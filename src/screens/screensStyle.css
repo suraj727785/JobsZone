@@ -1,0 +1,19 @@
+.JobsLarge{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom:40px;
+  }
+.JobsMedium{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    margin-bottom:40px;
+    }
+.JobsSmall{
+      display: grid;
+      grid-template-columns: repeat(1, 1fr); 
+      margin-bottom:40px;
+      }
+.LargeSearchContainer{
+        margin-top:100;
+        margin-left:400;
+}

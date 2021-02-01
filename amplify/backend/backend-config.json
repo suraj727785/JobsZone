@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "jobszone3dfe006b": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
