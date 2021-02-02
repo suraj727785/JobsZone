@@ -1,0 +1,98 @@
+type User @model {
+  id: ID!
+  firstName: String!
+  lastName:String!
+  Age:Int
+  Sex:String
+  email:String
+  mobileNo:String
+  address:String
+  collegeName:String
+  degree:String
+  branch:String
+  courseCompletion:String
+  collegeAddress:String
+  resumeFile:String
+  hireQuestion:String 
+  jobApplicant: [JobApplicant] @connection(keyName: "byUser", fields: ["id"])
+}
+type JobApplicant
+@model
+@key(name: "byUser", fields: ["userID", "jobID"])
+@key(name: "byJob", fields: ["jobID", "userID"]) {
+  id:ID!
+  userID:ID!
+  jobID:ID! 
+  user: User @connection(fields: ["userID"])
+  job: Job @connection(fields: ["jobID"])
+}
+type Job @model {
+  id: ID!
+  jobName:String!
+  jobTitle:String!
+  companyName:String
+  comapanyWebsite:String
+  aboutCompany:String
+  experience:String
+  duration:String
+  salary:String
+  noOfPosition:Int
+  jobLocation:String
+  lastDate:String
+  jobDescription:[JobDescription] @connection(keyName: "byJob", fields: ["id"])
+  jobCretaria:[JobCretaria] @connection(keyName: "byJob", fields: ["id"])
+  jobSkills:[JobSkill] @connection(keyName: "byJob", fields: ["id"])
+  perks:[Perk] @connection(keyName: "byJob", fields: ["id"])
+  jobApplicants: [JobApplicant] @connection(keyName: "byJob", fields: ["id"])
+}
+
+
+type Perk
+@model
+@key(
+  name: "byJob",
+  fields: ["jobID","createdAt"],
+  queryField: "perksByJob") {
+  id: ID!
+  content: String!
+  createdAt: String!
+  jobID: ID!
+  job: Job @connection(fields: ["jobID"])
+}
+type JobDescription
+@model
+@key(
+  name: "byJob",
+  fields: ["jobID","createdAt"],
+  queryField: "jobDescriptionByJob") {
+  id: ID!
+  content: String!
+  createdAt: String!
+  jobID: ID!
+  job: Job @connection(fields: ["jobID"])
+}
+type JobCretaria
+@model
+@key(
+  name: "byJob",
+  fields: ["jobID","createdAt"],
+  queryField: "jobCretariaByJob") {
+  id: ID!
+  content: String!
+  createdAt: String!
+  jobID: ID!
+  job: Job @connection(fields: ["jobID"])
+}
+type JobSkill
+@model
+@key(
+  name: "byJob",
+  fields: ["jobID","createdAt"],
+  queryField: "jobSkillsByJob") {
+  id: ID!
+  content: String!
+  createdAt: String!
+  jobID: ID!
+  job: Job @connection(fields: ["jobID"])
+}
+

@@ -2,11 +2,17 @@ import './componentStyle.css';
 import { FaMapMarkerAlt,FaUserAlt} from 'react-icons/fa';
 import { GiTakeMyMoney } from 'react-icons/gi';
 import { MdWork } from 'react-icons/md';
+import {Link} from 'react-router-dom';
 
 function JobCard(props){
+    const jobID=props.jobID;
+    
     return(
-        <div data-link="job" style={{position:'relative',margin:'1rem'}}>
-            <div className="card card-1">
+        <div style={{position:'relative',margin:'1rem'}}>
+            <Link style={{color:'black'}} to={{
+                pathname: `/job${jobID}`
+                }}>
+        <div className="card card-1">
                 <div className="company">
                 <div className="jobProfile">
                     <h3 style={{marginTop:10}}>{props.companyName}</h3>
@@ -40,6 +46,7 @@ function JobCard(props){
                   </div>
                 </div>
             </div>
+            </Link>
         </div>
     );
 }

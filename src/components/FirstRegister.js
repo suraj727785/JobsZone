@@ -1,8 +1,7 @@
 import React,{useEffect, useState} from 'react';
-import { useParams } from 'react-router-dom';
 
-function ApplyJobForm(){
-   let {jobId}=useParams();
+function FirstRegister(){
+
    useEffect(()=>{
 
    },[]);
@@ -56,11 +55,6 @@ function ApplyJobForm(){
     <label for="resume">Resume</label>
    <input type="file"  className="form-control" name="resume" id="resume" required/>
   </div>
-  <div className="form-group">
-    <label for="about-company">Why should we hire you?</label>
-    <textarea class="form-control" id="about-company" name="aboutCompany" rows="4" 
-    placeholder="mention skill and past experience and make you perfect for this job." required></textarea>
-  </div>
   <div class="text-center submitButton">
             <button style={{height:50,width:120,fontFamily:'sans-serif'}} name="apply" type="button" class="btn btn-primary">Apply</button>
           </div>
@@ -72,4 +66,4 @@ function ApplyJobForm(){
 
     );
 }
-export default ApplyJobForm;
+export default FirstRegister;
