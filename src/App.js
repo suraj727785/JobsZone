@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Route,Switch} from 'react-router-dom';
 import Search from './components/Search';
 import CreateJobScreen from './screens/CreateJobScreen';
@@ -14,10 +14,11 @@ import awsExports from "./aws-exports";
 import ProfileScreen from './screens/ProfileScreen';
 import FirstRegisterScreen from './screens/FirstRegisterScreen';
 import {getUser} from './graphql/queries';
+import EditProfileScreen from './screens/EditProfileScreen';
 Amplify.configure(awsExports);
 
 function App(){
-    const isRegistered=false;
+    const [isRegistered,setIsRegister]=useState(false);
     useEffect(()=>{
         const fetchUser= async()=>{
             const userInfo = await Auth.currentAuthenticatedUser({bypassCache:true});
@@ -25,7 +26,8 @@ function App(){
             graphqlOperation(getUser,{id: userInfo.attributes.sub})
            );
            if(userData.data.getUser){
-               isRegistered=true;
+               setIsRegister(true);
+               return;
            }
         }
         fetchUser();
@@ -43,6 +45,7 @@ function App(){
                 <Route path="/apply:jobId" component={ApplyJobScreen} />
                 <Route path="/myJobs" component={MyJobDetailsScreen} />
                 <Route path="/profile" component={ProfileScreen} />
+                <Route path="/editProfile" component={EditProfileScreen} />
             </Switch>
         </main>
         

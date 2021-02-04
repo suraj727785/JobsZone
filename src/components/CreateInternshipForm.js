@@ -103,7 +103,7 @@ function CreateInternshipForm(){
   </div>
   <div className="form-group">
     <label for="about-company">About Company</label>
-    <textarea class="form-control" id="about-company" name="aboutCompany" rows="3"></textarea>
+    <textarea className="form-control" id="about-company" name="aboutCompany" rows="3"></textarea>
   </div>
   <div className="form-row">
   <div className="form-group col-md-6">
@@ -127,7 +127,7 @@ function CreateInternshipForm(){
   </div>
   <div className="form-group">
     <label for="positions">No Of Postions</label>
-    <input type="number" class="form-control" id="positions" name="positions" min={1} max={1000000}/>
+    <input type="number" className="form-control" id="positions" name="positions" min={1} max={1000000}/>
   </div>
   <div className="form-group">
     <label for="internship-description">Internship Description (add multiple lines) </label>
@@ -229,8 +229,8 @@ function CreateInternshipForm(){
         );
       })}
   </div>
-  <div class="text-center submitButton">
-            <button style={{height:50,width:120,fontFamily:'sans-serif'}} name="addJob" type="button" class="btn btn-primary">Add Job</button>
+  <div className="text-center submitButton">
+            <button style={{height:50,width:120,fontFamily:'sans-serif'}} name="addJob" type="button" className="btn btn-primary">Add Job</button>
           </div>
 </form>
 

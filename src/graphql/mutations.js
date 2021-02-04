@@ -10,8 +10,8 @@ export const createUser = /* GraphQL */ `
       id
       firstName
       lastName
-      Age
-      Sex
+      age
+      sex
       email
       mobileNo
       address
@@ -46,8 +46,8 @@ export const updateUser = /* GraphQL */ `
       id
       firstName
       lastName
-      Age
-      Sex
+      age
+      sex
       email
       mobileNo
       address
@@ -82,8 +82,8 @@ export const deleteUser = /* GraphQL */ `
       id
       firstName
       lastName
-      Age
-      Sex
+      age
+      sex
       email
       mobileNo
       address
@@ -122,8 +122,8 @@ export const createJobApplicant = /* GraphQL */ `
         id
         firstName
         lastName
-        Age
-        Sex
+        age
+        sex
         email
         mobileNo
         address
@@ -189,8 +189,8 @@ export const updateJobApplicant = /* GraphQL */ `
         id
         firstName
         lastName
-        Age
-        Sex
+        age
+        sex
         email
         mobileNo
         address
@@ -256,8 +256,8 @@ export const deleteJobApplicant = /* GraphQL */ `
         id
         firstName
         lastName
-        Age
-        Sex
+        age
+        sex
         email
         mobileNo
         address
@@ -1065,6 +1065,45 @@ export const deleteJobSkill = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      updatedAt
+    }
+  }
+`;
+export const createJobCount = /* GraphQL */ `
+  mutation CreateJobCount(
+    $input: CreateJobCountInput!
+    $condition: ModelJobCountConditionInput
+  ) {
+    createJobCount(input: $input, condition: $condition) {
+      id
+      count
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateJobCount = /* GraphQL */ `
+  mutation UpdateJobCount(
+    $input: UpdateJobCountInput!
+    $condition: ModelJobCountConditionInput
+  ) {
+    updateJobCount(input: $input, condition: $condition) {
+      id
+      count
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteJobCount = /* GraphQL */ `
+  mutation DeleteJobCount(
+    $input: DeleteJobCountInput!
+    $condition: ModelJobCountConditionInput
+  ) {
+    deleteJobCount(input: $input, condition: $condition) {
+      id
+      count
+      createdAt
       updatedAt
     }
   }

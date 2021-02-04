@@ -67,8 +67,8 @@ function InternshipDetails(){
           </ul>
           <h5>No of Position.</h5>
           <p>30</p>
-          <div class="text-center submitButton">
-            <button style={{height:50,width:120,fontFamily:'sans-serif'}} type="button" class="btn btn-primary">Apply Now</button>
+          <div className="text-center submitButton">
+            <button style={{height:50,width:120,fontFamily:'sans-serif'}} type="button" className="btn btn-primary">Apply Now</button>
           </div>
               
             

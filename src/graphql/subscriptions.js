@@ -7,8 +7,8 @@ export const onCreateUser = /* GraphQL */ `
       id
       firstName
       lastName
-      Age
-      Sex
+      age
+      sex
       email
       mobileNo
       address
@@ -40,8 +40,8 @@ export const onUpdateUser = /* GraphQL */ `
       id
       firstName
       lastName
-      Age
-      Sex
+      age
+      sex
       email
       mobileNo
       address
@@ -73,8 +73,8 @@ export const onDeleteUser = /* GraphQL */ `
       id
       firstName
       lastName
-      Age
-      Sex
+      age
+      sex
       email
       mobileNo
       address
@@ -110,8 +110,8 @@ export const onCreateJobApplicant = /* GraphQL */ `
         id
         firstName
         lastName
-        Age
-        Sex
+        age
+        sex
         email
         mobileNo
         address
@@ -174,8 +174,8 @@ export const onUpdateJobApplicant = /* GraphQL */ `
         id
         firstName
         lastName
-        Age
-        Sex
+        age
+        sex
         email
         mobileNo
         address
@@ -238,8 +238,8 @@ export const onDeleteJobApplicant = /* GraphQL */ `
         id
         firstName
         lastName
-        Age
-        Sex
+        age
+        sex
         email
         mobileNo
         address
@@ -1002,6 +1002,36 @@ export const onDeleteJobSkill = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      updatedAt
+    }
+  }
+`;
+export const onCreateJobCount = /* GraphQL */ `
+  subscription OnCreateJobCount {
+    onCreateJobCount {
+      id
+      count
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateJobCount = /* GraphQL */ `
+  subscription OnUpdateJobCount {
+    onUpdateJobCount {
+      id
+      count
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteJobCount = /* GraphQL */ `
+  subscription OnDeleteJobCount {
+    onDeleteJobCount {
+      id
+      count
+      createdAt
       updatedAt
     }
   }

@@ -7,7 +7,7 @@ function MyJobDetails(props){
         <h1>Job Title</h1>
         <h4>Job Name</h4>
         <p>Company Name  <a href='https://google.com/'><FiExternalLink size={18}/></a></p>
-        <a  href="">View All Applications</a>
+        <a  href="allAplication">View All Applications</a>
         <ul style={{marginTop:20}} className="jobTopList" >
             <li>
                 <ul>
@@ -59,10 +59,10 @@ function MyJobDetails(props){
             <li>Student those who graduate in 2020 or will be graduate in 2021 can only apply </li>
             
         </ul>
-        <div class="submitButton">
-        <a href="apply" style={{fontFamily:'sans-serif',fontSize:18,color:'white',marginRight:20}}  class="btn btn-secondary">View All Application </a>
-        <a href="apply" style={{fontFamily:'sans-serif',fontSize:18,color:'white',marginRight:20}}  class="btn btn-secondary">Edit </a>
-        <a href="apply" style={{fontFamily:'sans-serif',fontSize:18,color:'white'}}  class="btn btn-danger">Delete</a>
+        <div className="submitButton">
+        <a href="apply" style={{fontFamily:'sans-serif',fontSize:18,color:'white',marginRight:20}}  className="btn btn-secondary">View All Application </a>
+        <a href="apply" style={{fontFamily:'sans-serif',fontSize:18,color:'white',marginRight:20}}  className="btn btn-secondary">Edit </a>
+        <a href="apply" style={{fontFamily:'sans-serif',fontSize:18,color:'white'}}  className="btn btn-danger">Delete</a>
         </div>
           
         

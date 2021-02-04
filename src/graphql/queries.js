@@ -7,8 +7,8 @@ export const getUser = /* GraphQL */ `
       id
       firstName
       lastName
-      Age
-      Sex
+      age
+      sex
       email
       mobileNo
       address
@@ -45,8 +45,8 @@ export const listUsers = /* GraphQL */ `
         id
         firstName
         lastName
-        Age
-        Sex
+        age
+        sex
         email
         mobileNo
         address
@@ -77,8 +77,8 @@ export const getJobApplicant = /* GraphQL */ `
         id
         firstName
         lastName
-        Age
-        Sex
+        age
+        sex
         email
         mobileNo
         address
@@ -146,8 +146,8 @@ export const listJobApplicants = /* GraphQL */ `
           id
           firstName
           lastName
-          Age
-          Sex
+          age
+          sex
           email
           mobileNo
           address
@@ -594,6 +594,33 @@ export const listJobSkills = /* GraphQL */ `
           createdAt
           updatedAt
         }
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getJobCount = /* GraphQL */ `
+  query GetJobCount($id: ID!) {
+    getJobCount(id: $id) {
+      id
+      count
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listJobCounts = /* GraphQL */ `
+  query ListJobCounts(
+    $filter: ModelJobCountFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listJobCounts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        count
+        createdAt
         updatedAt
       }
       nextToken

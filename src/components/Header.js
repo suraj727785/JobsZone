@@ -1,36 +1,37 @@
 import logo from '../images/logo.png';
 import './componentStyle.css';
+import { AmplifySignOut } from '@aws-amplify/ui-react';
 
 function Header() {
   return (
-    <div class="navigation-wrap bg-light start-header start-style">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<nav class="navbar navbar-expand-md navbar-light">
+    <div className="navigation-wrap bg-light start-header start-style">
+		<div className="container">
+			<div className="row">
+				<div className="col-12">
+					<nav className="navbar navbar-expand-md navbar-light">
 					
-						<a class="navbar-brand" href="/" ><img src={logo} alt="" /></a>	
+						<a className="navbar-brand" href="/" ><img src={logo} alt="" /></a>	
 						
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
+						<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+							<span className="navbar-toggler-icon"></span>
 						</button>
 						
-						<div class="collapse navbar-collapse" id="navbarSupportedContent">
-							<ul class="navbar-nav ml-auto py-4 py-md-0">
-              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-									<a class="nav-link" href="/">Jobs</a>
+						<div className="collapse navbar-collapse" id="navbarSupportedContent">
+							<ul className="navbar-nav ml-auto py-4 py-md-0">
+              <li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+									<a className="nav-link" href="/">Jobs</a>
 								</li>
-                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-									<a class="nav-link" href="/">Freshers Job</a>
+                <li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+									<a className="nav-link" href="/">Freshers Job</a>
 								</li>
-								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-									<a class="nav-link" href="/">Internship</a>
+								<li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+									<a className="nav-link" href="/">Internship</a>
 								</li>
-								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-									<a class="nav-link" href="/profile">Profile</a>
+								<li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+									<a className="nav-link" href="/profile">Profile</a>
 								</li>
-								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-									<a class="nav-link" href="/">Logout</a>
+								<li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+								<AmplifySignOut />
 								</li>
 							</ul>
 						</div>

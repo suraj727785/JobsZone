@@ -51,39 +51,6 @@ function JobScreen() {
         />
        )
      }
-     
-     <JobCard 
-     companyName="Goggle"
-     lastDate="23 feb 2021"
-     role="SDE"
-     salary="20 LPA"
-     experience=" 0 years"
-     location="Bengluru"
-     />
-     <JobCard 
-     companyName="Goggle"
-     lastDate="23 feb 2021"
-     role="SDE"
-     salary="20 LPA"
-     experience=" 0 years"
-     location="Bengluru"
-     />
-     <JobCard 
-     companyName="Goggle"
-     lastDate="23 feb 2021"
-     role="SDE"
-     salary="20 LPA"
-     experience=" 0 years"
-     location="Bengluru"
-     />
-     <JobCard 
-     companyName="Goggle"
-     lastDate="23 feb 2021"
-     role="SDE"
-     salary="20 LPA"
-     experience=" 0 years"
-     location="Bengluru"
-     />
      </div>
      <Footer />
     </div>

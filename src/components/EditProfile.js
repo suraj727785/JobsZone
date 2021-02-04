@@ -1,8 +1,9 @@
 import { API, Auth, graphqlOperation } from 'aws-amplify';
 import React,{useEffect, useState} from 'react';
 import {createUser} from '../graphql/mutations';
+import { getUser } from '../graphql/queries';
 
-    const FirstRegister =()=>{
+    const EditProfile =()=>{
     const[formState,updateFormState]=useState({
       fname:'',lname:'',email:'',mobileNo:'',address:'',
       age:20,sex:'',collegeName:'',degree:'',stream:'',
@@ -23,8 +24,23 @@ import {createUser} from '../graphql/mutations';
        try{
        const completeRegistration = async()=>{
         const userInfo = await Auth.currentAuthenticatedUser({bypassCache:true});
-        updateFormState({ email: userInfo.attributes.email });
-        updateFormState({ mobileNo: userInfo.attributes.phone_number });
+        const userData =await API.graphql(
+            graphqlOperation(
+                getUser,{id:userInfo.attributes.sub}
+            )
+        )
+        updateFormState({ email: userData.data.getUser.email });
+        updateFormState({ mobileNo: userData.data.getUser.mobileNo  });
+        updateFormState({ fname: userData.data.getUser.firstName });
+        updateFormState({ lname: userData.data.getUser.lastName  });
+        updateFormState({ address: userData.data.getUser.address });
+        updateFormState({ sex: userData.data.getUser.Sex });
+        updateFormState({ age: userData.data.getUser.Age });
+        updateFormState({ collegeName: userData.data.getUser.collegeName  });
+        updateFormState({ degree: userData.data.getUser.degree });
+        updateFormState({ stream: userData.data.getUser.branch  });
+        updateFormState({ collegeAddress: userData.data.getUser.collegeAddress });
+        updateFormState({ courseDate: userData.data.getUser.courseCompletion });
         setUserId(userInfo.attributes.sub)
        }
 
@@ -58,6 +74,9 @@ import {createUser} from '../graphql/mutations';
           }
       ))
   }
+
+   console.log(formState);
+   console.log(userId);
 
     return (
 
@@ -138,4 +157,4 @@ import {createUser} from '../graphql/mutations';
 
     );
 }
-export default FirstRegister;
+export default EditProfile;

@@ -12,21 +12,21 @@ function Footer(){
             <div className="links-inner">
               <ul>
                 <li><h3>Useful Links</h3></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms Of Use</a></li>
-                <li><a href="#">Return Policy</a></li>
+                <li><a href="somepage">Privacy Policy</a></li>
+                <li><a href="somepage">Terms Of Use</a></li>
+                <li><a href="somepage">Return Policy</a></li>
               </ul>
               <ul>
                 <li><h3>Company</h3></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact US</a></li>
-                <li><a href="#">Locate Us</a></li>
+                <li><a href="somepage">About Us</a></li>
+                <li><a href="somepage">Contact US</a></li>
+                <li><a href="somepage">Locate Us</a></li>
               </ul>
               <ul>
                 <li><h3>Follow Us</h3></li>
-                <li><a href="#"><img style={{height:26}}  src={facebook} alt="Facebook" />  Facebook</a></li>
-                <li><a href="#"><img style={{height:26}}  src={linkedIn} alt="Linkedin" />  Linkedin</a></li>
-                <li><a href="#"><img style={{height:26}} src={youtube}  alt="Youtube" />  Youtube</a></li>
+                <li><a href="somepage"><img style={{height:26}}  src={facebook} alt="Facebook" />  Facebook</a></li>
+                <li><a href="somepage"><img style={{height:26}}  src={linkedIn} alt="Linkedin" />  Linkedin</a></li>
+                <li><a href="somepage"><img style={{height:26}} src={youtube}  alt="Youtube" />  Youtube</a></li>
                 
               </ul>
               <ul>

@@ -3,6 +3,7 @@ import { FaMapMarkerAlt,FaUserAlt} from 'react-icons/fa';
 import { GiTakeMyMoney } from 'react-icons/gi';
 import { MdWork } from 'react-icons/md';
 import {Link} from 'react-router-dom';
+import moment from 'moment';
 
 function JobCard(props){
     const jobID=props.jobID;
@@ -16,7 +17,7 @@ function JobCard(props){
                 <div className="company">
                 <div className="jobProfile">
                     <h3 style={{marginTop:10}}>{props.companyName}</h3>
-                    <p>Appy before<b>{props.lastDate}</b></p>
+                    <p>Appy before <b>{moment(props.lastDate).format('ll')}</b></p>
                 </div>
                 </div>
                 <div>

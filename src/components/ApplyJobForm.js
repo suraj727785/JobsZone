@@ -1,11 +1,10 @@
-import React,{useEffect, useState} from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
 
 function ApplyJobForm(){
-   let {jobId}=useParams();
-   useEffect(()=>{
+  //  let {jobId}=useParams();
+  //  useEffect(()=>{
 
-   },[]);
+  //  },[]);
 
     return (
 
@@ -58,11 +57,11 @@ function ApplyJobForm(){
   </div>
   <div className="form-group">
     <label for="about-company">Why should we hire you?</label>
-    <textarea class="form-control" id="about-company" name="aboutCompany" rows="4" 
+    <textarea className="form-control" id="about-company" name="aboutCompany" rows="4" 
     placeholder="mention skill and past experience and make you perfect for this job." required></textarea>
   </div>
-  <div class="text-center submitButton">
-            <button style={{height:50,width:120,fontFamily:'sans-serif'}} name="apply" type="button" class="btn btn-primary">Apply</button>
+  <div className="text-center submitButton">
+            <button style={{height:50,width:120,fontFamily:'sans-serif'}} name="apply" type="button" className="btn btn-primary">Apply</button>
           </div>
 </form>
 

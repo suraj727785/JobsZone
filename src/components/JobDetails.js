@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { FiExternalLink } from 'react-icons/fi';
 import { useParams } from 'react-router-dom';
 import { getJob } from '../graphql/queries';
+import moment from 'moment';
 
 
 function JobDetails(props){
@@ -23,13 +24,13 @@ function JobDetails(props){
           )
         );
         
-      console.log(jobData);
       setJobDetails(jobData.data.getJob);
       setJobDescription(jobData.data.getJob.jobDescription.items);
       setDesiredSkill(jobData.data.getJob.jobSkills.items);
       setCriteria(jobData.data.getJob.jobCretaria.items);
-      }
+      
 
+      }
 
       getJobDetails();
 
@@ -66,7 +67,7 @@ function JobDetails(props){
                 <li>
                     <ul>
                         <li style={{color:'grey'}}>Apply By</li>
-                        <li><b>{jobDetails.lastDate}</b></li>
+                        <li><b>{moment(jobDetails.lastDate).format('ll')}</b></li>
                     </ul>
                 </li>
             </ul>
@@ -86,7 +87,7 @@ function JobDetails(props){
                 
             </ul>
             <div className="text-center submitButton">
-            <a href={`apply${jobId}`} style={{height:50,width:120,fontFamily:'sans-serif',fontSize:18,color:'white'}}  class="btn btn-primary">Apply Now</a>
+            <a href={`apply${jobId}`} style={{height:50,width:120,fontFamily:'sans-serif',fontSize:18,color:'white'}}  className="btn btn-primary">Apply Now</a>
           </div>
         </div>
     </div>   

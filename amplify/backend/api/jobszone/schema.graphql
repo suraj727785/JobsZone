@@ -2,8 +2,8 @@ type User @model {
   id: ID!
   firstName: String!
   lastName:String!
-  Age:Int
-  Sex:String
+  age:String
+  sex:String
   email:String
   mobileNo:String
   address:String
@@ -94,5 +94,9 @@ type JobSkill
   createdAt: String!
   jobID: ID!
   job: Job @connection(fields: ["jobID"])
+}
+type JobCount @model {
+  id: ID!
+  count:Int
 }
 
