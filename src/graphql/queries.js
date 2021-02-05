@@ -13,6 +13,7 @@ export const getUser = /* GraphQL */ `
       mobileNo
       address
       collegeName
+      userRole
       degree
       branch
       courseCompletion
@@ -51,6 +52,7 @@ export const listUsers = /* GraphQL */ `
         mobileNo
         address
         collegeName
+        userRole
         degree
         branch
         courseCompletion
@@ -83,6 +85,7 @@ export const getJobApplicant = /* GraphQL */ `
         mobileNo
         address
         collegeName
+        userRole
         degree
         branch
         courseCompletion
@@ -97,8 +100,10 @@ export const getJobApplicant = /* GraphQL */ `
       }
       job {
         id
+        jobUserId
         jobName
         jobTitle
+        jobType
         companyName
         comapanyWebsite
         aboutCompany
@@ -152,6 +157,7 @@ export const listJobApplicants = /* GraphQL */ `
           mobileNo
           address
           collegeName
+          userRole
           degree
           branch
           courseCompletion
@@ -163,8 +169,10 @@ export const listJobApplicants = /* GraphQL */ `
         }
         job {
           id
+          jobUserId
           jobName
           jobTitle
+          jobType
           companyName
           comapanyWebsite
           aboutCompany
@@ -188,8 +196,10 @@ export const getJob = /* GraphQL */ `
   query GetJob($id: ID!) {
     getJob(id: $id) {
       id
+      jobUserId
       jobName
       jobTitle
+      jobType
       companyName
       comapanyWebsite
       aboutCompany
@@ -263,8 +273,10 @@ export const listJobs = /* GraphQL */ `
     listJobs(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        jobUserId
         jobName
         jobTitle
+        jobType
         companyName
         comapanyWebsite
         aboutCompany
@@ -305,8 +317,10 @@ export const getPerk = /* GraphQL */ `
       jobID
       job {
         id
+        jobUserId
         jobName
         jobTitle
+        jobType
         companyName
         comapanyWebsite
         aboutCompany
@@ -352,8 +366,10 @@ export const listPerks = /* GraphQL */ `
         jobID
         job {
           id
+          jobUserId
           jobName
           jobTitle
+          jobType
           companyName
           comapanyWebsite
           aboutCompany
@@ -381,8 +397,10 @@ export const getJobDescription = /* GraphQL */ `
       jobID
       job {
         id
+        jobUserId
         jobName
         jobTitle
+        jobType
         companyName
         comapanyWebsite
         aboutCompany
@@ -428,8 +446,10 @@ export const listJobDescriptions = /* GraphQL */ `
         jobID
         job {
           id
+          jobUserId
           jobName
           jobTitle
+          jobType
           companyName
           comapanyWebsite
           aboutCompany
@@ -457,8 +477,10 @@ export const getJobCretaria = /* GraphQL */ `
       jobID
       job {
         id
+        jobUserId
         jobName
         jobTitle
+        jobType
         companyName
         comapanyWebsite
         aboutCompany
@@ -504,8 +526,10 @@ export const listJobCretarias = /* GraphQL */ `
         jobID
         job {
           id
+          jobUserId
           jobName
           jobTitle
+          jobType
           companyName
           comapanyWebsite
           aboutCompany
@@ -533,8 +557,10 @@ export const getJobSkill = /* GraphQL */ `
       jobID
       job {
         id
+        jobUserId
         jobName
         jobTitle
+        jobType
         companyName
         comapanyWebsite
         aboutCompany
@@ -580,8 +606,10 @@ export const listJobSkills = /* GraphQL */ `
         jobID
         job {
           id
+          jobUserId
           jobName
           jobTitle
+          jobType
           companyName
           comapanyWebsite
           aboutCompany
@@ -651,8 +679,10 @@ export const perksByJob = /* GraphQL */ `
         jobID
         job {
           id
+          jobUserId
           jobName
           jobTitle
+          jobType
           companyName
           comapanyWebsite
           aboutCompany
@@ -695,8 +725,10 @@ export const jobDescriptionByJob = /* GraphQL */ `
         jobID
         job {
           id
+          jobUserId
           jobName
           jobTitle
+          jobType
           companyName
           comapanyWebsite
           aboutCompany
@@ -739,8 +771,10 @@ export const jobCretariaByJob = /* GraphQL */ `
         jobID
         job {
           id
+          jobUserId
           jobName
           jobTitle
+          jobType
           companyName
           comapanyWebsite
           aboutCompany
@@ -783,8 +817,10 @@ export const jobSkillsByJob = /* GraphQL */ `
         jobID
         job {
           id
+          jobUserId
           jobName
           jobTitle
+          jobType
           companyName
           comapanyWebsite
           aboutCompany

@@ -1,11 +1,38 @@
-import React,{useState} from 'react';
+import { API, Auth, graphqlOperation } from 'aws-amplify';
+import React,{useEffect, useState} from 'react';
+import { createJob,createJobCretaria,createJobDescription,createJobSkill,updateJobCount,createPerk } from '../graphql/mutations';
+import { getJobCount } from '../graphql/queries';
 
 function CreateInternshipForm(){
 
+  const [userId,setUserId]=useState('');
   const [discriptionFields, setDiscriptionFields] = useState([{ value: null }]);
   const [skillsFields, setSkillsFields] = useState([{ value: null }]);
   const [criteriaFields, setCriteriaFields] = useState([{ value: null }]);
   const [perksFields, setPerksFields] = useState([{ value: null }]);
+  const [jobDetails,updateJobDetils]=useState({
+    jobTitle:'',jobName:'',companyName:'',companyWebsite:'',aboutCompany:'',
+    duration:'',salary:'',jobLocation:'',lastDate:'',positions:0
+  });
+  const[jobCount,setJobCount]=useState(1);
+  useEffect(()=>{
+    const fetchJobCount= async()=>{
+      const userInfo=await Auth.currentAuthenticatedUser({bypassCache:true});
+      setUserId(userInfo.attributes.sub);
+      const jobCountData = await API.graphql(
+        graphqlOperation(
+          getJobCount,{
+            id:'internshipCount'
+          }
+        )
+      );
+     setJobCount(jobCountData.data.getJobCount.count+1);
+    }
+
+     fetchJobCount();
+
+  },[]);
+
 
   function handleDiscriptionChange(i, event) {
     const values = [...discriptionFields];
@@ -75,6 +102,111 @@ function CreateInternshipForm(){
     values.splice(i, 1);
     setPerksFields(values);
   }
+  function handleChange(evt) {
+    const value = evt.target.value;
+    updateJobDetils({
+      ...jobDetails,
+      [evt.target.name]: value
+    });
+  }
+  const createNewJob=async()=>{
+    
+    await API.graphql(
+      graphqlOperation(
+        updateJobCount,{
+          input:{
+            id:'internshipCount',
+            count:jobCount
+          }
+
+        }
+      )
+    );
+    await API.graphql(
+      graphqlOperation(
+        createJob,{
+          input:{
+           id:`internship${jobCount}`,
+           jobName:jobDetails.jobName,
+           jobTitle:jobDetails.jobTitle,
+           jobType:"internship",
+           jobUserId:userId,
+           companyName:jobDetails.companyName,
+           comapanyWebsite:jobDetails.companyWebsite,
+           aboutCompany:jobDetails.aboutCompany,
+           duration:jobDetails.duration,
+           noOfPosition:jobDetails.positions,
+           salary:jobDetails.salary,
+           jobLocation:jobDetails.jobLocation,
+           lastDate:jobDetails.lastDate
+          }
+        }
+      )
+    );
+    let lDis =discriptionFields.length;
+    let iDis=0;
+    while(iDis<lDis){
+    await API.graphql(
+      graphqlOperation(
+        createJobDescription,{
+          input:{
+            content:discriptionFields[iDis].value,
+            jobID:`internship${jobCount}`
+          }
+        }
+      )
+    );
+    iDis=iDis+1;
+       }
+       let lSkil=skillsFields.length;
+       let iSkill=0
+       while(iSkill<lSkil){
+    await API.graphql(
+     graphqlOperation(
+       createJobSkill,{
+         input:{
+           content:skillsFields[iSkill].value,
+           jobID:`internship${jobCount}`
+         }
+       }
+     )
+   );
+   iSkill=iSkill+1;
+     }
+     let lCri=criteriaFields.length;
+     let iCri=0;
+     while(iCri<lCri){
+   await API.graphql(
+     graphqlOperation(
+       createJobCretaria,{
+         input:{
+           content:criteriaFields[iCri].value,
+           jobID:`internship${jobCount}`
+         }
+       }
+     )
+   );
+   iCri=iCri+1
+     }
+     let lPerks=perksFields.length;
+     let iPerks=0;
+     while(iPerks<lPerks){
+   await API.graphql(
+     graphqlOperation(
+       createPerk,{
+         input:{
+           content:perksFields[iPerks].value,
+           jobID:`internship${jobCount}`
+         }
+       }
+     )
+   );
+   iPerks=iPerks+1
+     }
+
+       }
+       console.log(discriptionFields);
+
    
     return (
 
@@ -84,50 +216,50 @@ function CreateInternshipForm(){
     <div className="form-row">
     <div className="form-group col-md-6">
       <label for="job-title">Job Title</label>
-      <input type="text" className="form-control" name="jobTitle" id="job-title" placeholder="Enter Job Title" />
+      <input type="text" value={jobDetails.jobTitle} onChange={handleChange} className="form-control" name="jobTitle" id="job-title" placeholder="Enter Job Title" />
     </div>
     <div className="form-group col-md-6">
     <label for="job-name">Job Name</label>
-      <input type="text" className="form-control" name="jobName" id="job-name" placeholder="Enter Job Name" />
+      <input type="text" value={jobDetails.jobName} onChange={handleChange} className="form-control" name="jobName" id="job-name" placeholder="Enter Job Name" />
     </div>
   </div>
   <div className="form-row">
     <div className="form-group col-md-6">
     <label for="company-name">Company Name</label>
-      <input type="text" className="form-control" name="companyName" id="job-title" placeholder="Enter Your Company Name" />
+      <input type="text" value={jobDetails.companyName} onChange={handleChange} className="form-control" name="companyName" id="job-title" placeholder="Enter Your Company Name" />
     </div>
     <div className="form-group col-md-6">
     <label for="company-website">Company Website</label>
-      <input type="text" className="form-control" name="companyWebsite" id="job-website" placeholder="Enter Company Official Website" />
+      <input type="text" value={jobDetails.companyWebsite} onChange={handleChange} className="form-control" name="companyWebsite" id="job-website" placeholder="Enter Company Official Website" />
     </div>
   </div>
   <div className="form-group">
     <label for="about-company">About Company</label>
-    <textarea className="form-control" id="about-company" name="aboutCompany" rows="3"></textarea>
+    <textarea className="form-control" value={jobDetails.aboutCompany} onChange={handleChange} id="about-company" name="aboutCompany" rows="3"></textarea>
   </div>
   <div className="form-row">
   <div className="form-group col-md-6">
       <label for="Duration">Duration</label>
-      <input type="text" className="form-control" name="duration" id="duration" placeholder="Enter Internship Duration (eg:- 2 months or 12 weeks )" />
+      <input type="text" className="form-control" value={jobDetails.duration} onChange={handleChange} name="duration" id="duration" placeholder="Enter Internship Duration (eg:- 2 months or 12 weeks )" />
     </div>  
     <div className="form-group col-md-6">
-      <label for="stipend">Stipend</label>
-      <input type="text" className="form-control" name="stipend" id="stipend" placeholder="Enter Stipend Offered (eg:- 10000 /month or unpaid )" />
+      <label for="salary">Stipend</label>
+      <input type="text" className="form-control" value={jobDetails.salary} onChange={handleChange} name="salary" id="stipend" placeholder="Enter Stipend Offered (eg:- 10000 /month or unpaid )" />
     </div>   
   </div>
   <div className="form-row">
     <div className="form-group col-md-6">
     <label for="internship-location">Internship Loaction</label>
-      <input type="text" className="form-control" name="internshipLocation" id="internship-location" placeholder="Enter Internship Location (for multiple enter Bengluru/Pune )" />
+      <input type="text" className="form-control" value={jobDetails.jobLocation} onChange={handleChange} name="jobLocation" id="internship-location" placeholder="Enter Internship Location (for multiple enter Bengluru/Pune )" />
     </div>
     <div className="form-group col-md-6">
     <label for="last-date">Last Date To Apply</label>
-      <input type="date" className="form-control" name="lastDate" id="lastDate"  />
+      <input type="date" className="form-control" value={jobDetails.lastDate} onChange={handleChange} name="lastDate" id="lastDate"  />
     </div>
   </div>
   <div className="form-group">
     <label for="positions">No Of Postions</label>
-    <input type="number" className="form-control" id="positions" name="positions" min={1} max={1000000}/>
+    <input type="number" className="form-control" value={jobDetails.positions} onChange={handleChange} id="positions" name="positions" min={1} max={1000000}/>
   </div>
   <div className="form-group">
     <label for="internship-description">Internship Description (add multiple lines) </label>
@@ -230,7 +362,7 @@ function CreateInternshipForm(){
       })}
   </div>
   <div className="text-center submitButton">
-            <button style={{height:50,width:120,fontFamily:'sans-serif'}} name="addJob" type="button" className="btn btn-primary">Add Job</button>
+            <button onClick={createNewJob} style={{height:50,width:120,fontFamily:'sans-serif'}} name="addJob" type="button" className="btn btn-primary">Add Job</button>
           </div>
 </form>
 

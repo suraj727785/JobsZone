@@ -1,8 +1,15 @@
+import { Auth } from 'aws-amplify';
 import logo from '../images/logo.png';
 import './componentStyle.css';
-import { AmplifySignOut } from '@aws-amplify/ui-react';
 
 function Header() {
+	const signOut = async()=>{
+		try {
+			await Auth.signOut();
+		} catch (error) {
+			console.log('error signing out: ', error);
+		}
+	}
   return (
     <div className="navigation-wrap bg-light start-header start-style">
 		<div className="container">
@@ -21,17 +28,17 @@ function Header() {
               <li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
 									<a className="nav-link" href="/">Jobs</a>
 								</li>
-                <li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-									<a className="nav-link" href="/">Freshers Job</a>
-								</li>
 								<li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-									<a className="nav-link" href="/">Internship</a>
+									<a className="nav-link" href="internship">Internship</a>
 								</li>
 								<li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
 									<a className="nav-link" href="/profile">Profile</a>
 								</li>
 								<li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-								<AmplifySignOut />
+									<a className="nav-link" href="/company">Create Job</a>
+								</li>
+								<li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+								<a onClick={signOut} href="/" className="nav-link">Logout</a>
 								</li>
 							</ul>
 						</div>

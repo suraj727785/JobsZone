@@ -891,6 +891,17 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
+          "name" : "userRole",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
           "name" : "degree",
           "description" : null,
           "args" : [ ],
@@ -1226,6 +1237,17 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
+          "name" : "jobUserId",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
           "name" : "jobName",
           "description" : null,
           "args" : [ ],
@@ -1252,6 +1274,17 @@
               "name" : "String",
               "ofType" : null
             }
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "jobType",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
@@ -3295,6 +3328,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "userRole",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelStringInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "degree",
           "description" : null,
           "type" : {
@@ -3437,6 +3479,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "jobUserId",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelIDInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "jobName",
           "description" : null,
           "type" : {
@@ -3447,6 +3498,15 @@
           "defaultValue" : null
         }, {
           "name" : "jobTitle",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelStringInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "jobType",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -4726,6 +4786,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "userRole",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "degree",
           "description" : null,
           "type" : {
@@ -4853,6 +4922,15 @@
           "defaultValue" : null
         }, {
           "name" : "collegeName",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelStringInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "userRole",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -5036,6 +5114,15 @@
           "defaultValue" : null
         }, {
           "name" : "collegeName",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "userRole",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5298,6 +5385,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "jobUserId",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "jobName",
           "description" : null,
           "type" : {
@@ -5321,6 +5417,15 @@
               "name" : "String",
               "ofType" : null
             }
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "jobType",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
           },
           "defaultValue" : null
         }, {
@@ -5414,6 +5519,15 @@
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
+          "name" : "jobUserId",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelIDInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "jobName",
           "description" : null,
           "type" : {
@@ -5424,6 +5538,15 @@
           "defaultValue" : null
         }, {
           "name" : "jobTitle",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelStringInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "jobType",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -5570,6 +5693,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "jobUserId",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "jobName",
           "description" : null,
           "type" : {
@@ -5580,6 +5712,15 @@
           "defaultValue" : null
         }, {
           "name" : "jobTitle",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "jobType",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",

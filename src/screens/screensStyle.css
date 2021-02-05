@@ -17,3 +17,26 @@
         margin-top:100;
         margin-left:400;
 }
+
+.header-row {
+  padding: 0 18px;
+}
+.header-column {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  display: inline-block;
+  font-weight: 300;
+  color: #555;
+  /*border: 1px solid grey;*/
+  padding: 0px;
+  width: 24%;
+  box-sizing: border-box; /*content-box|border-box|initial|inherit;*/
+}
+.list-group-column {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  display: inline-block;
+  font-weight: 300;
+  color: #555;
+  /*border: 1px solid grey;*/
+  padding: 0px;
+  width: 24%;
+}

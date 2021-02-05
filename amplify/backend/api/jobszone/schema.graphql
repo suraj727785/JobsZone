@@ -8,6 +8,7 @@ type User @model {
   mobileNo:String
   address:String
   collegeName:String
+  userRole:String
   degree:String
   branch:String
   courseCompletion:String
@@ -28,8 +29,10 @@ type JobApplicant
 }
 type Job @model {
   id: ID!
+  jobUserId:ID
   jobName:String!
   jobTitle:String!
+  jobType:String
   companyName:String
   comapanyWebsite:String
   aboutCompany:String

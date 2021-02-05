@@ -1,10 +1,12 @@
-import { API, graphqlOperation } from 'aws-amplify';
+import { API, Auth, graphqlOperation } from 'aws-amplify';
 import React,{useEffect, useState} from 'react';
 import { createJob,createJobCretaria,createJobDescription,createJobSkill,updateJobCount } from '../graphql/mutations';
 import { getJobCount } from '../graphql/queries';
+import { withRouter } from 'react-router-dom';
 
-function CreateJobForm(){
+function CreateJobForm(props){
 
+  const [userId,setUserId]=useState('');
   const [discriptionFields, setDiscriptionFields] = useState([{ value: '' }]);
   const [skillsFields, setSkillsFields] = useState([{ value: '' }]);
   const [criteriaFields, setCriteriaFields] = useState([{ value: '' }]);
@@ -15,6 +17,8 @@ function CreateJobForm(){
   const[jobCount,setJobCount]=useState(1);
   useEffect(()=>{
     const fetchJobCount= async()=>{
+      const userInfo=await Auth.currentAuthenticatedUser({bypassCache:true});
+      setUserId(userInfo.attributes.sub);
       const jobCountData = await API.graphql(
         graphqlOperation(
           getJobCount,{
@@ -27,7 +31,7 @@ function CreateJobForm(){
 
      fetchJobCount();
 
-  },[])
+  },[]);
 
   function handleDiscriptionChange(i, event) {
     const values = [...discriptionFields];
@@ -106,6 +110,8 @@ function CreateJobForm(){
            input:{
             id:`job${jobCount}`,
             jobName:jobDetails.jobName,
+            jobType:"job",
+            jobUserId:userId,
             jobTitle:jobDetails.jobTitle,
             companyName:jobDetails.companyName,
             comapanyWebsite:jobDetails.companyWebsite,
@@ -163,9 +169,10 @@ function CreateJobForm(){
     );
     iCri=iCri+1
       }
+      alert("Sucessfully created a job ");
+      props.history.push('/');
 
         }
-        console.log(discriptionFields);
 
     return (
 
@@ -302,4 +309,4 @@ function CreateJobForm(){
 
     );
 }
-export default CreateJobForm;
+export default withRouter(CreateJobForm);

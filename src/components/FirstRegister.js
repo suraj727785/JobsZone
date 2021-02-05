@@ -1,8 +1,9 @@
 import { API, Auth, graphqlOperation } from 'aws-amplify';
 import React,{useEffect, useState} from 'react';
 import {createUser} from '../graphql/mutations';
+import { withRouter } from 'react-router-dom';
 
-    const FirstRegister =()=>{
+    const FirstRegister =(props)=>{
     const[formState,updateFormState]=useState({
       fname:'',lname:'',email:'',mobileNo:'',address:'',
       age:20,sex:'',collegeName:'',degree:'',stream:'',
@@ -56,7 +57,9 @@ import {createUser} from '../graphql/mutations';
             }
 
           }
-      ))
+      ));
+      alert("Registration Sucessfull");
+      props.history.push('/');
   }
 
     return (
