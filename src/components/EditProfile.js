@@ -1,6 +1,6 @@
 import { API, Auth, graphqlOperation } from 'aws-amplify';
 import React,{useEffect, useState} from 'react';
-import {createUser} from '../graphql/mutations';
+import {createUser, updateUser} from '../graphql/mutations';
 import { getUser } from '../graphql/queries';
 
     const EditProfile =()=>{
@@ -53,7 +53,7 @@ import { getUser } from '../graphql/queries';
    const submitForm = async()=>{
     await API.graphql(
       graphqlOperation(
-        createUser,
+        updateUser,
           {
             input:{
               id:`${userId}`,

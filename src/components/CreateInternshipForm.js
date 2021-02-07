@@ -2,8 +2,9 @@ import { API, Auth, graphqlOperation } from 'aws-amplify';
 import React,{useEffect, useState} from 'react';
 import { createJob,createJobCretaria,createJobDescription,createJobSkill,updateJobCount,createPerk } from '../graphql/mutations';
 import { getJobCount } from '../graphql/queries';
+import {withRouter} from 'react-router-dom';
 
-function CreateInternshipForm(){
+function CreateInternshipForm(props){
 
   const [userId,setUserId]=useState('');
   const [discriptionFields, setDiscriptionFields] = useState([{ value: null }]);
@@ -203,9 +204,12 @@ function CreateInternshipForm(){
    );
    iPerks=iPerks+1
      }
+     
+     alert("Sucessfully created an Internship ");
+     props.history.push('/internship');
+
 
        }
-       console.log(discriptionFields);
 
    
     return (
@@ -372,4 +376,4 @@ function CreateInternshipForm(){
 
     );
 }
-export default CreateInternshipForm;
+export default withRouter(CreateInternshipForm);

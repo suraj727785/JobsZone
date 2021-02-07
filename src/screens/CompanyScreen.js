@@ -1,9 +1,46 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import './authStyle.css';
 import logo from '../images/logo.png';
-import { GiTakeMyMoney } from 'react-icons/gi';
+import { API, Auth, graphqlOperation, Storage } from 'aws-amplify';
+import {listJobs} from '../graphql/queries';
 
 function CompanyScreen(){
+  const [jobs,setJobs]=useState([]);
+  const [internships,setInternships]=useState([]);
+  useEffect(()=>{
+    try{
+      const getJobList= async()=>{
+      const userInfo=await Auth.currentAuthenticatedUser({bypassCache:true});
+      const jobList=await API.graphql(
+        graphqlOperation(
+          listJobs,{
+              filter:{
+                jobType: {contains: "job"},
+                jobUserId: {contains: userInfo.attributes.sub}
+              }
+          }   
+      ));
+      const internshipList=await API.graphql(
+        graphqlOperation(
+          listJobs,{
+              filter:{
+                jobType: {contains: "internship"},
+                jobUserId: {contains: userInfo.attributes.sub}
+              }
+          }   
+      ));
+      setJobs(jobList.data.listJobs.items);
+      setInternships(internshipList.data.listJobs.items);
+      }
+    
+      getJobList();
+    }
+    catch(e){
+      console.log(e)
+
+    }
+
+  },[]);
     return (
         <div class="admin">
   <header class="admin__header">
@@ -35,11 +72,12 @@ function CompanyScreen(){
     </ul>
   </nav>
   <main class="admin__main">
-    <h2>Dashboard</h2>
+    <h2 style={{color:'rebeccapurple'}}>Dashboard</h2>
     <div class="dashboard">
       <div class="dashboard__item">
         <div class="admincard">
-        <GiTakeMyMoney size={116} color='grey'/>
+          <h4>Total Jobs:</h4>
+        <h1 style={{fontSize:76,color:'rebeccapurple'}}>{jobs.length} Jobs</h1>
         <a href="viewAllJobs">
                 <div class="panel-footer">
                     <span class="pull-left">View All Jobs</span>
@@ -51,7 +89,8 @@ function CompanyScreen(){
       </div>
       <div class="dashboard__item">
         <div class="admincard">
-        <GiTakeMyMoney size={116} color='grey'/>
+          <h4>Total Internships:</h4>
+        <h1 style={{fontSize:76,color:'rebeccapurple'}}>{internships.length} Internships</h1>
         <a href="viewAllInternships">
                 <div class="panel-footer">
                     <span class="pull-left">View All Internship</span>
@@ -61,19 +100,9 @@ function CompanyScreen(){
             </a>
         </div>
       </div>
-      <div class="dashboard__item">
-        <div class="admincard">
-        <GiTakeMyMoney size={116} color='grey'/>
-        <a href="product.php">
-                <div class="panel-footer">
-                    <span class="pull-left">View All Applicants</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
+      <div>
       </div>
-   
+
     </div>
   </main>
   <footer class="admin__footer">

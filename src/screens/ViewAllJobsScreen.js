@@ -1,38 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import './authStyle.css';
 import logo from '../images/logo.png';
-import { API, graphqlOperation } from 'aws-amplify';
+import { API, Auth, graphqlOperation } from 'aws-amplify';
 import {listJobs} from '../graphql/queries';
 import {Link,withRouter} from 'react-router-dom';
 import moment from 'moment';
 import { deleteJob } from '../graphql/mutations';
 
 function ViewAllJobsScreen(props){
-  async function deleteThisJob (jobId){
-    await API.graphql(
-      graphqlOperation(
-        deleteJob,{
-          input:{
-            id:jobId
-          }
-        }
-      )
-    );
-    alert("Job Deleted Sucessfully");
-    window.location.reload();
-  }; 
+
   const [jobs,setJobs]=useState([]);
   useEffect(()=>{
       try{
         const getJobList= async()=>{
+        const userInfo=await Auth.currentAuthenticatedUser({bypassCache:true});
         const joblist=await API.graphql(
           graphqlOperation(
             listJobs,{
                 filter:{
-                  jobType: {contains: "job"}
+                  jobType: {contains: "job"},
+                  jobUserId: {contains: userInfo.attributes.sub}
                 }
             }   
-        ))
+        ));
         setJobs(joblist.data.listJobs.items);
         }
       
@@ -44,6 +34,20 @@ function ViewAllJobsScreen(props){
       }
   
     },[]);
+
+    async function deleteThisJob (jobId){
+      await API.graphql(
+        graphqlOperation(
+          deleteJob,{
+            input:{
+              id:jobId
+            }
+          }
+        )
+      );
+      alert("Job Deleted Sucessfully");
+      window.location.reload();
+    }; 
 
 
     return (
@@ -101,7 +105,7 @@ function ViewAllJobsScreen(props){
                                     <td>{moment(jobs.createdAt).format('ll')}</td>
                                     <td>{moment(jobs.lastDate).format('ll')}</td>
                                     <td><Link style={{color:'black'}} to={{
-                                            pathname: `/jobApplicants${jobs.id}`
+                                            pathname: `/viewJobApplicants${jobs.id}`
                                             }}>View</Link>
                                     </td>
                                     <td><Link style={{color:'black'}} to={{

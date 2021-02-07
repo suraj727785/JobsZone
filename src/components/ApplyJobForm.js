@@ -1,7 +1,7 @@
-import { API, Auth, graphqlOperation } from 'aws-amplify';
+import { API, Auth, graphqlOperation, Storage } from 'aws-amplify';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { createJobApplicant } from '../graphql/mutations';
+import { createJobApplicant, updateUser } from '../graphql/mutations';
 import { getUser } from '../graphql/queries';
 import { withRouter } from 'react-router-dom';
 
@@ -14,6 +14,19 @@ function ApplyJobForm(props){
 
   });
   const[userId,setUserId]=useState('');
+
+  const [fileState,setFileState]=useState({
+    fileUrl:'',file:'',fileName:''
+  })
+  const handleResumeChange=(e)=>{
+    const file = e.target.files[0];
+    setFileState({
+      fileUrl:URL.createObjectURL(file),
+      file:file,
+      fileName:`${userId}${file.name}`
+    })
+  }
+  console.log(fileState);
 
     function handleChange(evt) {
       const value = evt.target.value;
@@ -31,18 +44,20 @@ function ApplyJobForm(props){
             getUser,{id:userInfo.attributes.sub}
         )
     );
-    updateFormState({ email: userData.data.getUser.email });
-    updateFormState({ mobileNo: userData.data.getUser.mobileNo  });
-    updateFormState({ fname: userData.data.getUser.firstName });
-    updateFormState({ lname: userData.data.getUser.lastName  });
-    updateFormState({ address: userData.data.getUser.address });
-    updateFormState({ sex: userData.data.getUser.Sex });
-    updateFormState({ age: userData.data.getUser.Age });
-    updateFormState({ collegeName: userData.data.getUser.collegeName  });
-    updateFormState({ degree: userData.data.getUser.degree });
-    updateFormState({ stream: userData.data.getUser.branch  });
-    updateFormState({ collegeAddress: userData.data.getUser.collegeAddress });
-    updateFormState({ courseDate: userData.data.getUser.courseCompletion });
+    updateFormState({ 
+     email: userData.data.getUser.email,
+     mobileNo: userData.data.getUser.mobileNo,
+     fname: userData.data.getUser.firstName,
+     lname: userData.data.getUser.lastName,
+     address: userData.data.getUser.address,
+     sex: userData.data.getUser.Sex,
+     age: userData.data.getUser.Age,
+     collegeName: userData.data.getUser.collegeName,
+     degree: userData.data.getUser.degree,
+     stream: userData.data.getUser.branch,
+     collegeAddress: userData.data.getUser.collegeAddress,
+     courseDate: userData.data.getUser.courseCompletion,
+    });
     setUserId(userInfo.attributes.sub)
 
      }
@@ -64,10 +79,36 @@ function ApplyJobForm(props){
          }
        )
      );
+     await API.graphql(
+      graphqlOperation(
+        updateUser,
+          {
+            input:{
+              id:`${userId}`,
+              firstName:formState.fname,
+              lastName :formState.lname,
+              age:formState.age,
+              sex:formState.sex,
+              email:formState.email,
+              resumeFile:fileState.fileName,
+              mobileNo:formState.mobileNo,
+              address:formState.address,
+              collegeName:formState.collegeName,
+              degree:formState.degree,
+              branch:formState.stream,
+              courseCompletion:formState.courseDate,
+              collegeAddress:formState.collegeAddress,
+              hireQuestion:formState.hireQuestion
+            }
+
+          }
+      ));
+     await Storage.put(fileState.fileName,fileState.file);
      alert("Sucessfully applied for job ");
      props.history.push('/');
 
    }
+
 
     return (
 
@@ -102,7 +143,7 @@ function ApplyJobForm(props){
     <div className="form-group col-md-6">
     <label for="sex">Gender</label>
     <select  value={formState.sex}  onChange={handleChange} className="form-control" name="sex" required>
-     <option value=''>Select Your Gender</option>
+     <option value={formState.sex}>Select Your Gender</option>
       <option value='M'>Male</option>
       <option value='F'>Female</option>
       <option value='NB'>Can't prefer to say</option>
@@ -141,7 +182,7 @@ function ApplyJobForm(props){
   </div>
   <div className="form-group">
     <label for="resume">Resume</label>
-   <input type="file"  className="form-control" name="resume" id="resume" required/>
+   <input type="file"  className="form-control" onChange={(evt) => handleResumeChange(evt)}  name="resume" id="resume" required/>
   </div>
   <div className="form-group">
     <label for="hire-question">Why should we hire you?</label>

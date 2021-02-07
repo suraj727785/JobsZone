@@ -18,18 +18,19 @@ import InternshipScreen from './screens/InternshipScreen';
 import CompanyScreen from './screens/CompanyScreen';
 import ViewAllJobsScreen from './screens/ViewAllJobsScreen';
 import ViewAllInternshipsScreen from './screens/ViewAllInternshipsScreen';
+import ViewJobApplicantsScreen from './screens/ViewJobApplicantsScreen';
 Amplify.configure(awsExports);
 
 function App(){
-    const [isRegistered,setIsRegister]=useState(false);
+    const [isRegistered,setIsRegister]=useState(true);
     useEffect(()=>{
         const fetchUser= async()=>{
             const userInfo = await Auth.currentAuthenticatedUser({bypassCache:true});
             const userData= await API.graphql(
             graphqlOperation(getUser,{id: userInfo.attributes.sub})
            );
-           if(userData.data.getUser){
-               setIsRegister(true);
+           if(!userData.data.getUser){
+               setIsRegister(false);
                return;
            }
         }
@@ -52,6 +53,7 @@ function App(){
                 <Route path="/company" component={CompanyScreen} />
                 <Route path="/viewAllJobs" component={ViewAllJobsScreen} />
                 <Route path="/viewAllInternships" component={ViewAllInternshipsScreen} />
+                <Route path="/viewJobApplicants:jobId" component={ViewJobApplicantsScreen} />
             </Switch>
         </main>
         

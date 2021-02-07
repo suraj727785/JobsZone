@@ -1,8 +1,31 @@
-import { Auth } from 'aws-amplify';
+import { API, Auth, graphqlOperation } from 'aws-amplify';
+import { useEffect, useState } from 'react';
+import { getUser } from '../graphql/queries';
 import logo from '../images/logo.png';
 import './componentStyle.css';
 
 function Header() {
+	const [userRole,setUserRole]=useState('');
+	useEffect(()=>{
+		try{
+			const getUserRole=async()=>{
+				const userInfo=await Auth.currentAuthenticatedUser({bypassCache:true});
+				const userData=await API.graphql(
+					graphqlOperation(
+						getUser,{
+							id:userInfo.attributes.sub
+						}
+					)
+				);
+				setUserRole(userData.data.getUser.userRole);
+
+		}
+		getUserRole();
+	}catch(e){
+		console.log(e);
+	}
+
+	},[]);
 	const signOut = async()=>{
 		try {
 			await Auth.signOut();
@@ -34,9 +57,21 @@ function Header() {
 								<li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
 									<a className="nav-link" href="/profile">Profile</a>
 								</li>
+								{ userRole==="Admin" &&
 								<li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-									<a className="nav-link" href="/company">Create Job</a>
+									<a className="nav-link" href="/company">Admin</a>
 								</li>
+                                 }
+								 {userRole==="JobSeeker" &&
+								 <li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+								 <a className="nav-link" href="/myAppication">My Applications</a>
+							 </li>
+								 }
+								 {userRole==="JobProvider" &&
+								 <li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+								 <a className="nav-link" href="/company">Manage Jobs</a>
+							 </li>
+								 }
 								<li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
 								<a onClick={signOut} href="/" className="nav-link">Logout</a>
 								</li>
