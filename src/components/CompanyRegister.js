@@ -1,13 +1,13 @@
 import { API, Auth, graphqlOperation } from 'aws-amplify';
 import React,{useEffect, useState} from 'react';
-import {createUser, updateUser} from '../graphql/mutations';
-import { getUser } from '../graphql/queries';
+import {createUser} from '../graphql/mutations';
+import { withRouter } from 'react-router-dom';
 
-    const EditProfile =()=>{
+    const CompanyRegister =(props)=>{
     const[formState,updateFormState]=useState({
       fname:'',lname:'',email:'',mobileNo:'',address:'',
-      age:20,sex:'',collegeName:'',degree:'',stream:'',
-      collegeAddress:'',courseDate:''
+      age:20,sex:'',companyName:'',userPost:'',companyWebsite:'',
+      officeAddress:''
 
     });
     const[userId,setUserId]=useState('');
@@ -24,23 +24,8 @@ import { getUser } from '../graphql/queries';
        try{
        const completeRegistration = async()=>{
         const userInfo = await Auth.currentAuthenticatedUser({bypassCache:true});
-        const userData =await API.graphql(
-            graphqlOperation(
-                getUser,{id:userInfo.attributes.sub}
-            )
-        )
-        updateFormState({ email: userData.data.getUser.email });
-        updateFormState({ mobileNo: userData.data.getUser.mobileNo  });
-        updateFormState({ fname: userData.data.getUser.firstName });
-        updateFormState({ lname: userData.data.getUser.lastName  });
-        updateFormState({ address: userData.data.getUser.address });
-        updateFormState({ sex: userData.data.getUser.Sex });
-        updateFormState({ age: userData.data.getUser.Age });
-        updateFormState({ collegeName: userData.data.getUser.collegeName  });
-        updateFormState({ degree: userData.data.getUser.degree });
-        updateFormState({ stream: userData.data.getUser.branch  });
-        updateFormState({ collegeAddress: userData.data.getUser.collegeAddress });
-        updateFormState({ courseDate: userData.data.getUser.courseCompletion });
+        updateFormState({ email: userInfo.attributes.email });
+        updateFormState({ mobileNo: userInfo.attributes.phone_number });
         setUserId(userInfo.attributes.sub)
        }
 
@@ -53,7 +38,7 @@ import { getUser } from '../graphql/queries';
    const submitForm = async()=>{
     await API.graphql(
       graphqlOperation(
-        updateUser,
+        createUser,
           {
             input:{
               id:`${userId}`,
@@ -64,19 +49,17 @@ import { getUser } from '../graphql/queries';
               email:formState.email,
               mobileNo:formState.mobileNo,
               address:formState.address,
-              collegeName:formState.collegeName,
-              degree:formState.degree,
-              branch:formState.stream,
-              courseCompletion:formState.courseDate,
-              collegeAddress:formState.collegeAddress
+              companyName:formState.companyName,
+              companyWebsite:formState.companyWebsite,
+              userPost:formState.userPost,
+              officeAddress:formState.officeAddress
             }
 
           }
-      ))
+      ));
+      alert("Registration Sucessfull");
+      props.history.push('/viewAllJobs');
   }
-
-   console.log(formState);
-   console.log(userId);
 
     return (
 
@@ -124,32 +107,26 @@ import { getUser } from '../graphql/queries';
       <input type="text" value={formState.address}  onChange={handleChange} className="form-control" name="address"  placeholder="Enter Your Current Address" required/>
     </div>
     <div className="form-group col-md-6">
-    <label for="college-name">College Name</label>
-      <input type="text" value={formState.collegeName}  onChange={handleChange} className="form-control" name="collegeName"  placeholder="Enter Your College Name" required/>
+    <label for="company-name">Comapny Name</label>
+      <input type="text" value={formState.companyName}  onChange={handleChange} className="form-control" name="collegeName"  placeholder="Enter Your Organization Name" required/>
     </div>
   </div>
   <div className="form-row">
     <div className="form-group col-md-6">
-    <label for="degree">Degree</label>
-      <input type="text" value={formState.degree} onChange={handleChange} className="form-control" name="degree"  placeholder="Enter Your Degree Name" required/>
+    <label for="userPost">Your Designation</label>
+      <input type="text" value={formState.userPost} onChange={handleChange} className="form-control" name="userPost"  placeholder="Enter Your Designation in Company" required/>
     </div>
     <div className="form-group col-md-6">
-    <label for="stream">Stream</label>
-      <input type="text" value={formState.stream}  onChange={handleChange} className="form-control" name="stream" placeholder="Enter Your Stream" required/>
+    <label for="stream">Company Website</label>
+      <input type="text" value={formState.companyWebsite}  onChange={handleChange} className="form-control" name="companyWebsite" placeholder="Enter Your Company Website" required/>
     </div>
   </div>
-  <div className="form-row">
-   <div className="form-group col-md-6">
-    <label for="collegeAddress">College Address</label>
-   <input type="text" value={formState.collegeAddress}  onChange={handleChange} className="form-control" name="collegeAddress"  required/>
+   <div className="form-group">
+    <label for="officeAddress">Office Address</label>
+    <input type="text" value={formState.officeAddress}  onChange={handleChange} className="form-control" name="officeAddress" placeholder="Enter Your Company Website" required/>
    </div>
-    <div className="form-group col-md-6">
-    <label for="courseDate">Course Completion Date</label>
-      <input type="date" value={formState.courseDate}  onChange={handleChange} className="form-control" name="courseDate" required/>
-    </div>
-  </div>
   <div className="text-center submitButton">
-            <button  onClick={submitForm} style={{height:50,width:120,fontFamily:'sans-serif',color:'white',fontSize:20}} name="submit" type="submit" className="btn btn-primary">Update</button>
+            <button  onClick={submitForm} style={{height:50,width:120,fontFamily:'sans-serif',color:'white',fontSize:20}} name="submit" type="submit" className="btn btn-primary">Submit</button>
           </div>
 </form>
     </div>
@@ -157,4 +134,4 @@ import { getUser } from '../graphql/queries';
 
     );
 }
-export default EditProfile;
+export default CompanyRegister;

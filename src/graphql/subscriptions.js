@@ -13,6 +13,10 @@ export const onCreateUser = /* GraphQL */ `
       mobileNo
       address
       collegeName
+      companyName
+      officeAddress
+      userPost
+      companyWebsite
       userRole
       degree
       branch
@@ -47,6 +51,10 @@ export const onUpdateUser = /* GraphQL */ `
       mobileNo
       address
       collegeName
+      companyName
+      officeAddress
+      userPost
+      companyWebsite
       userRole
       degree
       branch
@@ -81,6 +89,10 @@ export const onDeleteUser = /* GraphQL */ `
       mobileNo
       address
       collegeName
+      companyName
+      officeAddress
+      userPost
+      companyWebsite
       userRole
       degree
       branch
@@ -119,6 +131,10 @@ export const onCreateJobApplicant = /* GraphQL */ `
         mobileNo
         address
         collegeName
+        companyName
+        officeAddress
+        userPost
+        companyWebsite
         userRole
         degree
         branch
@@ -186,6 +202,10 @@ export const onUpdateJobApplicant = /* GraphQL */ `
         mobileNo
         address
         collegeName
+        companyName
+        officeAddress
+        userPost
+        companyWebsite
         userRole
         degree
         branch
@@ -253,6 +273,10 @@ export const onDeleteJobApplicant = /* GraphQL */ `
         mobileNo
         address
         collegeName
+        companyName
+        officeAddress
+        userPost
+        companyWebsite
         userRole
         degree
         branch

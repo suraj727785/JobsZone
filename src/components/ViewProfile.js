@@ -39,7 +39,9 @@ function ViewProfile(){
           <h6>Mob No. : {user.mobileNo}</h6>
           <h6>Address : {user.address}</h6>
         </div>
-        <div className="tab">
+          {user.userRole==="jobSeeker"?
+          <div>
+            <div className="tab">
                 <h2>Academics Details</h2>
             </div>
             <div style={{marginTop:30}}>
@@ -52,7 +54,24 @@ function ViewProfile(){
             <a href="editProfile" style={{height:50,width:120,fontFamily:'sans-serif',fontSize:18,color:'white'}}  className="btn btn-secondary">Edit</a>
           </div>
         </div>
-        </div>    
+        </div>
+        :
+          <div>
+            <div className="tab">
+                <h2>Organization Details</h2>
+            </div>
+            <div style={{marginTop:30}}>
+          <h6>Company Name :{user.companyName}</h6>
+          <h6>Office Address : {user.officeAddress}</h6>
+          <h6>Designation: {user.userPost}</h6>
+          <h6>Company Website : <a href={user.companyWebsite}>{user.companyWebsite}</a></h6>
+          <div style={{width:'50%'}} className="text-center submitButton">
+            <a href="editProfile" style={{height:50,width:120,fontFamily:'sans-serif',fontSize:18,color:'white'}}  className="btn btn-secondary">Edit</a>
+          </div>
+        </div>
+        </div>
+            }
+        </div>   
         </div>
 
     );

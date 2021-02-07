@@ -5,7 +5,7 @@ import JobCard from "../components/JobCard";
 import { useMediaQuery } from 'react-responsive';
 import './screensStyle.css';
 import Search from '../components/Search';
-import { API, graphqlOperation } from 'aws-amplify';
+import { API, Auth, graphqlOperation } from 'aws-amplify';
 import {listJobs} from '../graphql/queries';
 
 

@@ -12,35 +12,24 @@ import Amplify, { API, Auth, graphqlOperation } from "aws-amplify";
 import awsExports from "./aws-exports";
 import ProfileScreen from './screens/ProfileScreen';
 import FirstRegisterScreen from './screens/FirstRegisterScreen';
-import {getUser} from './graphql/queries';
+import {getUser, listUsers} from './graphql/queries';
 import EditProfileScreen from './screens/EditProfileScreen';
 import InternshipScreen from './screens/InternshipScreen';
 import CompanyScreen from './screens/CompanyScreen';
 import ViewAllJobsScreen from './screens/ViewAllJobsScreen';
 import ViewAllInternshipsScreen from './screens/ViewAllInternshipsScreen';
 import ViewJobApplicantsScreen from './screens/ViewJobApplicantsScreen';
+import MyApplicationsScreen from './screens/MyAppicationsScreen';
+import JobSearchScreen from './screens/JobSearchScreen';
 Amplify.configure(awsExports);
 
 function App(){
-    const [isRegistered,setIsRegister]=useState(true);
-    useEffect(()=>{
-        const fetchUser= async()=>{
-            const userInfo = await Auth.currentAuthenticatedUser({bypassCache:true});
-            const userData= await API.graphql(
-            graphqlOperation(getUser,{id: userInfo.attributes.sub})
-           );
-           if(!userData.data.getUser){
-               setIsRegister(false);
-               return;
-           }
-        }
-        fetchUser();
 
-    },[]);
     return(
         <main>
             <Switch>
-                <Route path="/" component={isRegistered?JobScreen:FirstRegisterScreen} exact />
+                <Route path="/" component={FirstRegisterScreen} exact />
+                <Route path="/viewAllJobs" component={JobScreen} />
                 <Route path="/internship" component={InternshipScreen} />
                 <Route path="/job:jobId" component={JobDetailsScreen} />
                 <Route path="/internship:jobId" component={InternshipDetailsScreen} />
@@ -54,6 +43,9 @@ function App(){
                 <Route path="/viewAllJobs" component={ViewAllJobsScreen} />
                 <Route path="/viewAllInternships" component={ViewAllInternshipsScreen} />
                 <Route path="/viewJobApplicants:jobId" component={ViewJobApplicantsScreen} />
+                <Route path="/myApplication" component={MyApplicationsScreen} />
+                <Route path="/searchJob:searchTerm" component={JobSearchScreen}/>
+                
             </Switch>
         </main>
         

@@ -8,6 +8,10 @@ type User @model {
   mobileNo:String
   address:String
   collegeName:String
+  companyName:String
+  officeAddress:String
+  userPost:String
+  companyWebsite:String
   userRole:String
   degree:String
   branch:String

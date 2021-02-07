@@ -3,13 +3,13 @@ import React,{useEffect, useState} from 'react';
 import {createUser, updateUser} from '../graphql/mutations';
 import { getUser } from '../graphql/queries';
 
-    const EditProfile =()=>{
-    const[formState,updateFormState]=useState({
-      fname:'',lname:'',email:'',mobileNo:'',address:'',
-      age:20,sex:'',collegeName:'',degree:'',stream:'',
-      collegeAddress:'',courseDate:''
-
-    });
+    const EditCompanyProfile =()=>{
+        const[formState,updateFormState]=useState({
+            fname:'',lname:'',email:'',mobileNo:'',address:'',
+            age:20,sex:'',companyName:'',userPost:'',companyWebsite:'',
+            officeAddress:''
+      
+          });
     const[userId,setUserId]=useState('');
 
     function handleChange(evt) {
@@ -29,18 +29,19 @@ import { getUser } from '../graphql/queries';
                 getUser,{id:userInfo.attributes.sub}
             )
         )
-        updateFormState({ email: userData.data.getUser.email });
-        updateFormState({ mobileNo: userData.data.getUser.mobileNo  });
-        updateFormState({ fname: userData.data.getUser.firstName });
-        updateFormState({ lname: userData.data.getUser.lastName  });
-        updateFormState({ address: userData.data.getUser.address });
-        updateFormState({ sex: userData.data.getUser.Sex });
-        updateFormState({ age: userData.data.getUser.Age });
-        updateFormState({ collegeName: userData.data.getUser.collegeName  });
-        updateFormState({ degree: userData.data.getUser.degree });
-        updateFormState({ stream: userData.data.getUser.branch  });
-        updateFormState({ collegeAddress: userData.data.getUser.collegeAddress });
-        updateFormState({ courseDate: userData.data.getUser.courseCompletion });
+        updateFormState({ 
+            email: userData.data.getUser.email,
+            mobileNo: userData.data.getUser.mobileNo,
+            fname: userData.data.getUser.firstName,
+            lname: userData.data.getUser.lastName,
+            address: userData.data.getUser.address,
+            sex: userData.data.getUser.sex,
+            age: userData.data.getUser.age,
+            companyName: userData.data.getUser.companyName,
+            companyWebsite: userData.data.getUser.companyWebsite,
+            userPost: userData.data.getUser.userPost,
+            officeAddress: userData.data.getUser.officeAddress
+         });
         setUserId(userInfo.attributes.sub)
        }
 
@@ -111,7 +112,7 @@ import { getUser } from '../graphql/queries';
     <div className="form-group col-md-6">
     <label for="sex">Gender</label>
     <select  value={formState.sex}  onChange={handleChange} className="form-control" name="sex" required>
-     <option value=''>Select Your Gender</option>
+     <option value={formState.sex}>Select Your Gender</option>
       <option value='M'>Male</option>
       <option value='F'>Female</option>
       <option value='NB'>Can't prefer to say</option>
@@ -124,30 +125,24 @@ import { getUser } from '../graphql/queries';
       <input type="text" value={formState.address}  onChange={handleChange} className="form-control" name="address"  placeholder="Enter Your Current Address" required/>
     </div>
     <div className="form-group col-md-6">
-    <label for="college-name">College Name</label>
-      <input type="text" value={formState.collegeName}  onChange={handleChange} className="form-control" name="collegeName"  placeholder="Enter Your College Name" required/>
+    <label for="coompany-name">Company Name</label>
+      <input type="text" value={formState.companyName}  onChange={handleChange} className="form-control" name="companyName"  placeholder="Enter Your Organization Name" required/>
     </div>
   </div>
   <div className="form-row">
     <div className="form-group col-md-6">
-    <label for="degree">Degree</label>
-      <input type="text" value={formState.degree} onChange={handleChange} className="form-control" name="degree"  placeholder="Enter Your Degree Name" required/>
+    <label for="companyWebsite">Company Website</label>
+      <input type="text" value={formState.companyWebsite} onChange={handleChange} className="form-control" name="companyWebsite"  placeholder="Enter Company Official Website" required/>
     </div>
     <div className="form-group col-md-6">
-    <label for="stream">Stream</label>
-      <input type="text" value={formState.stream}  onChange={handleChange} className="form-control" name="stream" placeholder="Enter Your Stream" required/>
+    <label for="userPost">Your Designation</label>
+      <input type="text" value={formState.userPost}  onChange={handleChange} className="form-control" name="userPost" placeholder="Enter Your Designation" required/>
     </div>
   </div>
-  <div className="form-row">
-   <div className="form-group col-md-6">
-    <label for="collegeAddress">College Address</label>
-   <input type="text" value={formState.collegeAddress}  onChange={handleChange} className="form-control" name="collegeAddress"  required/>
+   <div className="form-group">
+    <label for="officeAddress">Office Address</label>
+   <input type="text" value={formState.officeAddress}  onChange={handleChange} className="form-control" name="officeAddress"  required/>
    </div>
-    <div className="form-group col-md-6">
-    <label for="courseDate">Course Completion Date</label>
-      <input type="date" value={formState.courseDate}  onChange={handleChange} className="form-control" name="courseDate" required/>
-    </div>
-  </div>
   <div className="text-center submitButton">
             <button  onClick={submitForm} style={{height:50,width:120,fontFamily:'sans-serif',color:'white',fontSize:20}} name="submit" type="submit" className="btn btn-primary">Update</button>
           </div>
@@ -157,4 +152,4 @@ import { getUser } from '../graphql/queries';
 
     );
 }
-export default EditProfile;
+export default EditCompanyProfile;

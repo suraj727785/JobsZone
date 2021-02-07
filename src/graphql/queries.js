@@ -13,6 +13,10 @@ export const getUser = /* GraphQL */ `
       mobileNo
       address
       collegeName
+      companyName
+      officeAddress
+      userPost
+      companyWebsite
       userRole
       degree
       branch
@@ -52,6 +56,10 @@ export const listUsers = /* GraphQL */ `
         mobileNo
         address
         collegeName
+        companyName
+        officeAddress
+        userPost
+        companyWebsite
         userRole
         degree
         branch
@@ -85,6 +93,10 @@ export const getJobApplicant = /* GraphQL */ `
         mobileNo
         address
         collegeName
+        companyName
+        officeAddress
+        userPost
+        companyWebsite
         userRole
         degree
         branch
@@ -157,6 +169,10 @@ export const listJobApplicants = /* GraphQL */ `
           mobileNo
           address
           collegeName
+          companyName
+          officeAddress
+          userPost
+          companyWebsite
           userRole
           degree
           branch

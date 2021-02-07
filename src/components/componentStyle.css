@@ -300,3 +300,6 @@
   border-color: #f1f1f1;
   
   }
+  .input-search:first-letter{
+    text-transform: uppercase;
+  }

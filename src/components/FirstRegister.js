@@ -48,6 +48,7 @@ import { withRouter } from 'react-router-dom';
               sex:formState.sex,
               email:formState.email,
               mobileNo:formState.mobileNo,
+              userRole:"jobSeeker",
               address:formState.address,
               collegeName:formState.collegeName,
               degree:formState.degree,
@@ -59,7 +60,7 @@ import { withRouter } from 'react-router-dom';
           }
       ));
       alert("Registration Sucessfull");
-      props.history.push('/');
+      props.history.push('/viewAllJobs');
   }
 
     return (

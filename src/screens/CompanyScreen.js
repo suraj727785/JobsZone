@@ -44,7 +44,7 @@ function CompanyScreen(){
     return (
         <div class="admin">
   <header class="admin__header">
-    <a href="/"><img style={{height:120,width:250}} className="logo" src={logo} alt="" /></a>
+    <a href="/viewAllJobs"><img style={{height:120,width:250}} className="logo" src={logo} alt="" /></a>
     <div class="toolbar">
       <h3 style={{color:'white'}}>.</h3>
       <a href="#" class="logout">

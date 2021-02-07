@@ -1,14 +1,15 @@
 
-import { API, graphqlOperation } from 'aws-amplify';
+import { API, Auth, graphqlOperation } from 'aws-amplify';
 import React, { useEffect, useState } from 'react';
 import { FiExternalLink } from 'react-icons/fi';
 import { useParams } from 'react-router-dom';
-import { getJob } from '../graphql/queries';
+import { getJob, listJobApplicants } from '../graphql/queries';
 import moment from 'moment';
 
 
 function JobDetails(props){
   let { jobId } = useParams();
+  const [isApplied,setIsApplied]=useState(false);
   const [jobDetails,setJobDetails]=useState([]);
   const [jobDescription,setJobDescription]=useState([]);
   const [desiredSkill,setDesiredSkill]=useState([]);
@@ -23,6 +24,20 @@ function JobDetails(props){
             }
           )
         );
+        const userInfo=await Auth.currentAuthenticatedUser({bypassCache:true});
+        const jobApplicants= await API.graphql(
+          graphqlOperation(
+            listJobApplicants,{
+              filter:{
+                userID: {contains: userInfo.attributes.sub},
+                jobID: {contains: jobId}
+              }
+            }
+          )
+        );
+        if(jobApplicants){
+          setIsApplied(true);
+        }
         
       setJobDetails(jobData.data.getJob);
       setJobDescription(jobData.data.getJob.jobDescription.items);
@@ -87,7 +102,7 @@ function JobDetails(props){
                 
             </ul>
             <div className="text-center submitButton">
-            <a href={`apply${jobId}`} style={{height:50,width:120,fontFamily:'sans-serif',fontSize:18,color:'white'}}  className="btn btn-primary">Apply Now</a>
+            {isApplied?<h3 style={{borderRadius:50,color:'grey'}}>Already Applied</h3>:<a href={`apply${jobId}`} style={{height:50,width:120,fontFamily:'sans-serif',fontSize:18,color:'white'}}  className="btn btn-primary">Apply Now</a>}
           </div>
         </div>
     </div>   
