@@ -7,7 +7,7 @@ import {listJobApplicants} from '../graphql/queries';
 import {Link, useParams, withRouter} from 'react-router-dom';
 import moment from 'moment';
 
-function ViewJobApplicantsScreen(props){
+function ViewAdminJobApplicantsScreen(props){
     const {jobId} =useParams();
     const [jobApplicants,setJobApplicants]=useState([]);
     useEffect(()=>{
@@ -15,11 +15,7 @@ function ViewJobApplicantsScreen(props){
           const getJobApplicant=async()=>{
           const AllApplicants=await API.graphql(
             graphqlOperation(
-              listJobApplicants,{
-                filter:{
-                  jobID: {contains: jobId}
-                }
-              }
+              listJobApplicants
             )
           )
           setJobApplicants(AllApplicants.data.listJobApplicants.items)
@@ -53,24 +49,33 @@ function ViewJobApplicantsScreen(props){
           </div>
         </header>
         <nav class="admin__nav">
-          <ul class="menu">
-            <li class="menu__item">
-              <a class="menu__link" href="company">Dashboard</a>
-            </li>
-            <li class="menu__item">
-              <a class="menu__link" href="viewAllJobs">View jobs</a>
-            </li>
-            <li class="menu__item">
-              <a class="menu__link" href="createJob">Create a new Job</a>
-            </li>
-            <li class="menu__item">
-              <a class="menu__link" href="viewAllInternships">View internships</a>
-            </li>
-            <li class="menu__item">
-              <a class="menu__link" href="createInternship">Create a new internship</a>
-            </li>
-          </ul>
-        </nav>
+    <ul class="menu">
+      <li class="menu__item">
+        <a class="menu__link" href="admin">Dashboard</a>
+      </li>
+      <li class="menu__item">
+        <a class="menu__link" href="approveJobs">View all jobs requests</a>
+      </li>
+      <li class="menu__item">
+        <a class="menu__link" href="adminJobs">View jobs</a>
+      </li>
+      <li class="menu__item">
+        <a class="menu__link" href="createJob">Create a new Job</a>
+      </li>
+      <li class="menu__item">
+        <a class="menu__link" href="adminInternship">View internships</a>
+      </li>
+      <li class="menu__item">
+        <a class="menu__link" href="createInternship">Create a new internship</a>
+      </li>
+      <li class="menu__item">
+        <a class="menu__link" href="viewAllUsers">View All users</a>
+      </li>
+      <li class="menu__item">
+        <a class="menu__link" href="viewAllCompanies">View All Companies</a>
+      </li>
+    </ul>
+  </nav>
         <main class="admin__main">
 
           <h2 style={{color:'rebeccapurple'}}>All Applicants </h2>
@@ -79,7 +84,8 @@ function ViewJobApplicantsScreen(props){
             <table class="table table-bordered table-hover">
                 <thead>
                      <tr>
-                        <th>Name</th>
+                        <th>Job Name</th>
+                        <th>Applicant Name</th>
                         <th>College</th>
                         <th>Email</th>
                         <th>Mobile No.</th>
@@ -91,6 +97,9 @@ function ViewJobApplicantsScreen(props){
                     {jobApplicants.map(jobApplicants=>
                      
                                 <tr>
+                                    <td><Link style={{color:'black'}} to={{
+                                            pathname: `/job${jobApplicants.job.id}`
+                                            }}>{jobApplicants.job.jobName}</Link></td>
                                     <td>{jobApplicants.user.firstName} {jobApplicants.user.lastName}</td>
                                     <td>{jobApplicants.user.collegeName}</td>
                                     <td>{jobApplicants.user.email}</td>
@@ -115,4 +124,4 @@ function ViewJobApplicantsScreen(props){
     );
 }
 
-export default withRouter(ViewJobApplicantsScreen);
+export default withRouter(ViewAdminJobApplicantsScreen);

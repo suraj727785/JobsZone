@@ -102,7 +102,7 @@ function JobDetails(props){
                 
             </ul>
             <div className="text-center submitButton">
-            {isApplied?<h3 style={{borderRadius:50,color:'grey'}}>Already Applied</h3>:<a href={`apply${jobId}`} style={{height:50,width:120,fontFamily:'sans-serif',fontSize:18,color:'white'}}  className="btn btn-primary">Apply Now</a>}
+            <a href={`apply${jobId}`} style={{height:50,width:120,fontFamily:'sans-serif',fontSize:18,color:'white'}}  className="btn btn-primary">Apply Now</a>
           </div>
         </div>
     </div>   

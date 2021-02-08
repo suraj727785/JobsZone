@@ -27,7 +27,8 @@ type JobApplicant
 @key(name: "byJob", fields: ["jobID", "userID"]) {
   id:ID!
   userID:ID!
-  jobID:ID! 
+  jobID:ID!
+  applicationStatus:String 
   user: User @connection(fields: ["userID"])
   job: Job @connection(fields: ["jobID"])
 }
@@ -37,6 +38,7 @@ type Job @model {
   jobName:String!
   jobTitle:String!
   jobType:String
+  jobStatus:String
   companyName:String
   comapanyWebsite:String
   aboutCompany:String

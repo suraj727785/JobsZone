@@ -112,6 +112,7 @@ function CreateJobForm(props){
             jobName:jobDetails.jobName,
             jobType:"job",
             jobUserId:userId,
+            jobStatus:"created",
             jobTitle:jobDetails.jobTitle,
             companyName:jobDetails.companyName,
             comapanyWebsite:jobDetails.companyWebsite,
@@ -169,8 +170,8 @@ function CreateJobForm(props){
     );
     iCri=iCri+1
       }
-      alert("Sucessfully created a job ");
-      props.history.push('/');
+      alert("Sucessfully created a job. Your Job will be active within 2 hrs, If not contact us.");
+      props.history.push('/viewAllJobs');
 
         }
 

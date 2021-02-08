@@ -1,23 +1,20 @@
 import React, { useState,useEffect } from 'react';
 import './authStyle.css';
 import logo from '../images/logo.png';
-import { API, Auth, graphqlOperation } from 'aws-amplify';
+import { API, graphqlOperation } from 'aws-amplify';
 import {listJobs} from '../graphql/queries';
 
-function CompanyScreen(){
+function AdminScreen(){
   const [jobs,setJobs]=useState([]);
   const [internships,setInternships]=useState([]);
   useEffect(()=>{
     try{
       const getJobList= async()=>{
-      const userInfo=await Auth.currentAuthenticatedUser({bypassCache:true});
       const jobList=await API.graphql(
         graphqlOperation(
           listJobs,{
               filter:{
-                jobType: {contains: "job"},
-                jobUserId: {contains: userInfo.attributes.sub},
-                jobStatus:{notContains:"created"}
+                jobType: {contains: "job"}
               }
           }   
       ));
@@ -25,9 +22,7 @@ function CompanyScreen(){
         graphqlOperation(
           listJobs,{
               filter:{
-                jobType: {contains: "internship"},
-                jobUserId: {contains: userInfo.attributes.sub},
-                jobStatus:{notContains:"created"}
+                jobType: {contains: "internship"}
               }
           }   
       ));
@@ -57,19 +52,28 @@ function CompanyScreen(){
   <nav class="admin__nav">
     <ul class="menu">
       <li class="menu__item">
-        <a class="menu__link" href="company">Dashboard</a>
+        <a class="menu__link" href="admin">Dashboard</a>
       </li>
       <li class="menu__item">
-        <a class="menu__link" href="viewJobs">View jobs</a>
+        <a class="menu__link" href="approveJobs">View all jobs requests</a>
+      </li>
+      <li class="menu__item">
+        <a class="menu__link" href="adminJobs">View jobs</a>
       </li>
       <li class="menu__item">
         <a class="menu__link" href="createJob">Create a new Job</a>
       </li>
       <li class="menu__item">
-        <a class="menu__link" href="viewAllInternships">View internships</a>
+        <a class="menu__link" href="adminInternship">View internships</a>
       </li>
       <li class="menu__item">
         <a class="menu__link" href="createInternship">Create a new internship</a>
+      </li>
+      <li class="menu__item">
+        <a class="menu__link" href="viewAllUsers">View All users</a>
+      </li>
+      <li class="menu__item">
+        <a class="menu__link" href="viewAllCompanies">View All Companies</a>
       </li>
     </ul>
   </nav>
@@ -80,11 +84,9 @@ function CompanyScreen(){
         <div class="admincard">
           <h4>Total Jobs:</h4>
         <h1 style={{fontSize:76,color:'rebeccapurple'}}>{jobs.length} Jobs</h1>
-        <a href="viewAllJobs">
+        <a href="adminJobs">
                 <div class="panel-footer">
                     <span class="pull-left">View All Jobs</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
                 </div>
             </a>
         </div>
@@ -93,27 +95,24 @@ function CompanyScreen(){
         <div class="admincard">
           <h4>Total Internships:</h4>
         <h1 style={{fontSize:76,color:'rebeccapurple'}}>{internships.length} Internships</h1>
-        <a href="viewAllInternships">
+        <a href="adminInternship">
                 <div class="panel-footer">
                     <span class="pull-left">View All Internship</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
                 </div>
             </a>
         </div>
       </div>
-      <div>
-      </div>
-
+   
     </div>
+   
   </main>
   <footer class="admin__footer">
     <span>
-      &copy; 2021 JobsZone
+      &copy; 2021 JobsZone.
     </span>
   </footer>
 </div>
    );
 }
 
-export default CompanyScreen;
+export default AdminScreen;

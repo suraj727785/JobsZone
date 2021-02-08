@@ -29,6 +29,7 @@ export const getUser = /* GraphQL */ `
           id
           userID
           jobID
+          applicationStatus
           createdAt
           updatedAt
         }
@@ -83,6 +84,7 @@ export const getJobApplicant = /* GraphQL */ `
       id
       userID
       jobID
+      applicationStatus
       user {
         id
         firstName
@@ -116,6 +118,7 @@ export const getJobApplicant = /* GraphQL */ `
         jobName
         jobTitle
         jobType
+        jobStatus
         companyName
         comapanyWebsite
         aboutCompany
@@ -159,6 +162,7 @@ export const listJobApplicants = /* GraphQL */ `
         id
         userID
         jobID
+        applicationStatus
         user {
           id
           firstName
@@ -189,6 +193,7 @@ export const listJobApplicants = /* GraphQL */ `
           jobName
           jobTitle
           jobType
+          jobStatus
           companyName
           comapanyWebsite
           aboutCompany
@@ -216,6 +221,7 @@ export const getJob = /* GraphQL */ `
       jobName
       jobTitle
       jobType
+      jobStatus
       companyName
       comapanyWebsite
       aboutCompany
@@ -270,6 +276,7 @@ export const getJob = /* GraphQL */ `
           id
           userID
           jobID
+          applicationStatus
           createdAt
           updatedAt
         }
@@ -293,6 +300,7 @@ export const listJobs = /* GraphQL */ `
         jobName
         jobTitle
         jobType
+        jobStatus
         companyName
         comapanyWebsite
         aboutCompany
@@ -337,6 +345,7 @@ export const getPerk = /* GraphQL */ `
         jobName
         jobTitle
         jobType
+        jobStatus
         companyName
         comapanyWebsite
         aboutCompany
@@ -386,6 +395,7 @@ export const listPerks = /* GraphQL */ `
           jobName
           jobTitle
           jobType
+          jobStatus
           companyName
           comapanyWebsite
           aboutCompany
@@ -417,6 +427,7 @@ export const getJobDescription = /* GraphQL */ `
         jobName
         jobTitle
         jobType
+        jobStatus
         companyName
         comapanyWebsite
         aboutCompany
@@ -466,6 +477,7 @@ export const listJobDescriptions = /* GraphQL */ `
           jobName
           jobTitle
           jobType
+          jobStatus
           companyName
           comapanyWebsite
           aboutCompany
@@ -497,6 +509,7 @@ export const getJobCretaria = /* GraphQL */ `
         jobName
         jobTitle
         jobType
+        jobStatus
         companyName
         comapanyWebsite
         aboutCompany
@@ -546,6 +559,7 @@ export const listJobCretarias = /* GraphQL */ `
           jobName
           jobTitle
           jobType
+          jobStatus
           companyName
           comapanyWebsite
           aboutCompany
@@ -577,6 +591,7 @@ export const getJobSkill = /* GraphQL */ `
         jobName
         jobTitle
         jobType
+        jobStatus
         companyName
         comapanyWebsite
         aboutCompany
@@ -626,6 +641,7 @@ export const listJobSkills = /* GraphQL */ `
           jobName
           jobTitle
           jobType
+          jobStatus
           companyName
           comapanyWebsite
           aboutCompany
@@ -699,6 +715,7 @@ export const perksByJob = /* GraphQL */ `
           jobName
           jobTitle
           jobType
+          jobStatus
           companyName
           comapanyWebsite
           aboutCompany
@@ -745,6 +762,7 @@ export const jobDescriptionByJob = /* GraphQL */ `
           jobName
           jobTitle
           jobType
+          jobStatus
           companyName
           comapanyWebsite
           aboutCompany
@@ -791,6 +809,7 @@ export const jobCretariaByJob = /* GraphQL */ `
           jobName
           jobTitle
           jobType
+          jobStatus
           companyName
           comapanyWebsite
           aboutCompany
@@ -837,6 +856,7 @@ export const jobSkillsByJob = /* GraphQL */ `
           jobName
           jobTitle
           jobType
+          jobStatus
           companyName
           comapanyWebsite
           aboutCompany

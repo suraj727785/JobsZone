@@ -21,6 +21,13 @@ import ViewAllInternshipsScreen from './screens/ViewAllInternshipsScreen';
 import ViewJobApplicantsScreen from './screens/ViewJobApplicantsScreen';
 import MyApplicationsScreen from './screens/MyAppicationsScreen';
 import JobSearchScreen from './screens/JobSearchScreen';
+import AdminScreen from './screens/AdminScreen';
+import ViewAdminJobsScreen from './screens/ViewAdminJobsScreen';
+import ViewAdminInternshipsScreen from './screens/ViewAdminInternshipsScreen';
+import ViewAdminJobApplicantScreen from './screens/ViewAdminJobApplicantScreen';
+import ViewJobRequestsScreen from './screens/ViewJobRequestsScreen';
+import ViewAllUsersScreen from './screens/ViewAllUsersScreen';
+import ViewAllCompaniesScreen from './screens/ViewAllCompaniesScreen';
 Amplify.configure(awsExports);
 
 function App(){
@@ -40,11 +47,18 @@ function App(){
                 <Route path="/profile" component={ProfileScreen} />
                 <Route path="/editProfile" component={EditProfileScreen} />
                 <Route path="/company" component={CompanyScreen} />
-                <Route path="/viewAllJobs" component={ViewAllJobsScreen} />
+                <Route path="/viewJobs" component={ViewAllJobsScreen} />
                 <Route path="/viewAllInternships" component={ViewAllInternshipsScreen} />
                 <Route path="/viewJobApplicants:jobId" component={ViewJobApplicantsScreen} />
                 <Route path="/myApplication" component={MyApplicationsScreen} />
                 <Route path="/searchJob:searchTerm" component={JobSearchScreen}/>
+                <Route path="/admin" component={AdminScreen}/>
+                <Route path="/adminJobs" component={ViewAdminJobsScreen}/>
+                <Route path="/adminInternship" component={ViewAdminInternshipsScreen}/>
+                <Route path="/adminApplicants" component={ViewAdminJobApplicantScreen}/>
+                <Route path="/approveJobs" component={ViewJobRequestsScreen}/>
+                <Route path="/viewAllUsers" component={ViewAllUsersScreen}/>
+                <Route path="/viewAllCompanies" component={ViewAllCompaniesScreen}/>
                 
             </Switch>
         </main>

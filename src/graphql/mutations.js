@@ -32,6 +32,7 @@ export const createUser = /* GraphQL */ `
           id
           userID
           jobID
+          applicationStatus
           createdAt
           updatedAt
         }
@@ -73,6 +74,7 @@ export const updateUser = /* GraphQL */ `
           id
           userID
           jobID
+          applicationStatus
           createdAt
           updatedAt
         }
@@ -114,6 +116,7 @@ export const deleteUser = /* GraphQL */ `
           id
           userID
           jobID
+          applicationStatus
           createdAt
           updatedAt
         }
@@ -133,6 +136,7 @@ export const createJobApplicant = /* GraphQL */ `
       id
       userID
       jobID
+      applicationStatus
       user {
         id
         firstName
@@ -166,6 +170,7 @@ export const createJobApplicant = /* GraphQL */ `
         jobName
         jobTitle
         jobType
+        jobStatus
         companyName
         comapanyWebsite
         aboutCompany
@@ -207,6 +212,7 @@ export const updateJobApplicant = /* GraphQL */ `
       id
       userID
       jobID
+      applicationStatus
       user {
         id
         firstName
@@ -240,6 +246,7 @@ export const updateJobApplicant = /* GraphQL */ `
         jobName
         jobTitle
         jobType
+        jobStatus
         companyName
         comapanyWebsite
         aboutCompany
@@ -281,6 +288,7 @@ export const deleteJobApplicant = /* GraphQL */ `
       id
       userID
       jobID
+      applicationStatus
       user {
         id
         firstName
@@ -314,6 +322,7 @@ export const deleteJobApplicant = /* GraphQL */ `
         jobName
         jobTitle
         jobType
+        jobStatus
         companyName
         comapanyWebsite
         aboutCompany
@@ -357,6 +366,7 @@ export const createJob = /* GraphQL */ `
       jobName
       jobTitle
       jobType
+      jobStatus
       companyName
       comapanyWebsite
       aboutCompany
@@ -411,6 +421,7 @@ export const createJob = /* GraphQL */ `
           id
           userID
           jobID
+          applicationStatus
           createdAt
           updatedAt
         }
@@ -432,6 +443,7 @@ export const updateJob = /* GraphQL */ `
       jobName
       jobTitle
       jobType
+      jobStatus
       companyName
       comapanyWebsite
       aboutCompany
@@ -486,6 +498,7 @@ export const updateJob = /* GraphQL */ `
           id
           userID
           jobID
+          applicationStatus
           createdAt
           updatedAt
         }
@@ -507,6 +520,7 @@ export const deleteJob = /* GraphQL */ `
       jobName
       jobTitle
       jobType
+      jobStatus
       companyName
       comapanyWebsite
       aboutCompany
@@ -561,6 +575,7 @@ export const deleteJob = /* GraphQL */ `
           id
           userID
           jobID
+          applicationStatus
           createdAt
           updatedAt
         }
@@ -587,6 +602,7 @@ export const createPerk = /* GraphQL */ `
         jobName
         jobTitle
         jobType
+        jobStatus
         companyName
         comapanyWebsite
         aboutCompany
@@ -634,6 +650,7 @@ export const updatePerk = /* GraphQL */ `
         jobName
         jobTitle
         jobType
+        jobStatus
         companyName
         comapanyWebsite
         aboutCompany
@@ -681,6 +698,7 @@ export const deletePerk = /* GraphQL */ `
         jobName
         jobTitle
         jobType
+        jobStatus
         companyName
         comapanyWebsite
         aboutCompany
@@ -728,6 +746,7 @@ export const createJobDescription = /* GraphQL */ `
         jobName
         jobTitle
         jobType
+        jobStatus
         companyName
         comapanyWebsite
         aboutCompany
@@ -775,6 +794,7 @@ export const updateJobDescription = /* GraphQL */ `
         jobName
         jobTitle
         jobType
+        jobStatus
         companyName
         comapanyWebsite
         aboutCompany
@@ -822,6 +842,7 @@ export const deleteJobDescription = /* GraphQL */ `
         jobName
         jobTitle
         jobType
+        jobStatus
         companyName
         comapanyWebsite
         aboutCompany
@@ -869,6 +890,7 @@ export const createJobCretaria = /* GraphQL */ `
         jobName
         jobTitle
         jobType
+        jobStatus
         companyName
         comapanyWebsite
         aboutCompany
@@ -916,6 +938,7 @@ export const updateJobCretaria = /* GraphQL */ `
         jobName
         jobTitle
         jobType
+        jobStatus
         companyName
         comapanyWebsite
         aboutCompany
@@ -963,6 +986,7 @@ export const deleteJobCretaria = /* GraphQL */ `
         jobName
         jobTitle
         jobType
+        jobStatus
         companyName
         comapanyWebsite
         aboutCompany
@@ -1010,6 +1034,7 @@ export const createJobSkill = /* GraphQL */ `
         jobName
         jobTitle
         jobType
+        jobStatus
         companyName
         comapanyWebsite
         aboutCompany
@@ -1057,6 +1082,7 @@ export const updateJobSkill = /* GraphQL */ `
         jobName
         jobTitle
         jobType
+        jobStatus
         companyName
         comapanyWebsite
         aboutCompany
@@ -1104,6 +1130,7 @@ export const deleteJobSkill = /* GraphQL */ `
         jobName
         jobTitle
         jobType
+        jobStatus
         companyName
         comapanyWebsite
         aboutCompany

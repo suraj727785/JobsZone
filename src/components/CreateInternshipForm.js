@@ -131,6 +131,7 @@ function CreateInternshipForm(props){
            jobName:jobDetails.jobName,
            jobTitle:jobDetails.jobTitle,
            jobType:"internship",
+           jobStatus:"created",
            jobUserId:userId,
            companyName:jobDetails.companyName,
            comapanyWebsite:jobDetails.companyWebsite,
@@ -205,7 +206,7 @@ function CreateInternshipForm(props){
    iPerks=iPerks+1
      }
      
-     alert("Sucessfully created an Internship ");
+     alert("Sucessfully created a job. Your Job will be active within 2 hrs, If not contact us.");
      props.history.push('/internship');
 
 

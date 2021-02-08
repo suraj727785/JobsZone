@@ -22,7 +22,8 @@ function JobScreen() {
         graphqlOperation(
           listJobs,{
             filter:{
-              jobType: {contains: "job"}
+              jobType: {contains: "job"},
+              jobStatus:{eq:"active"}
             }
         }    
       ))

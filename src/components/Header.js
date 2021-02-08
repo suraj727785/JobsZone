@@ -59,7 +59,7 @@ function Header() {
 								</li>
 								{ userRole==="Admin" &&
 								<li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-									<a className="nav-link" href="/company">Admin</a>
+									<a className="nav-link" href="/admin">Admin</a>
 								</li>
                                  }
 								 {userRole==="JobSeeker" &&
