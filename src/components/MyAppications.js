@@ -38,7 +38,7 @@ function MyAppications(){
       }
     return (
         <div style={{width:'90%',margin:'auto'}}>
-             <table class="table table-borderless table-hover ">
+             <table className="table table-borderless table-hover ">
                 <thead style={{backgroundColor:'#f8f9fa'}}>
                      <tr>
                         <th>Job Name</th>

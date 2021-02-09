@@ -5,7 +5,7 @@ import { API, Auth, graphqlOperation } from 'aws-amplify';
 import {listJobs} from '../graphql/queries';
 import {Link} from 'react-router-dom';
 import moment from 'moment';
-import { deleteJob } from '../graphql/mutations';
+import { deleteJob, updateJob } from '../graphql/mutations';
 
 function ViewAllInternshipsScreen(){
     const [jobs,setJobs]=useState([]);
@@ -46,49 +46,85 @@ function ViewAllInternshipsScreen(){
         );
         alert("Job Deleted Sucessfully");
         window.location.reload();
-      }; 
+      };
+      const changeJobStatus=async(jobId,currentStatus)=>{
+
+        if(currentStatus==="active"){
+          await API.graphql(
+            graphqlOperation(
+              updateJob,
+              {
+                input:{
+                  id:jobId,
+                  jobStatus:"inactive"
+                }
+              }
+            )
+          );
+  
+        }else{
+          await API.graphql(
+            graphqlOperation(
+              updateJob,
+              {
+                input:{
+                  id:jobId,
+                  jobStatus:"active"
+                }
+              }
+            )
+          );
+  
+        }
+        window.location.reload();
+  
+      } 
+  
+  
+  
 
     return (
-        <div class="admin">
-        <header class="admin__header">
+        <div className="admin">
+        <header className="admin__header">
           <a href="/viewAllJobs"><img style={{height:120,width:250}} className="logo" src={logo} alt="" /></a>
-          <div class="toolbar">
+          <div className="toolbar">
             <h3 style={{color:'white'}}>.</h3>
-            <a href="#" class="logout">
+            <a href="#" className="logout">
               Log Out
             </a>
           </div>
         </header>
-        <nav class="admin__nav">
-          <ul class="menu">
-            <li class="menu__item">
-              <a class="menu__link" href="company">Dashboard</a>
+        <nav className="admin__nav">
+          <ul className="menu">
+            <li className="menu__item">
+              <a className="menu__link" href="company">Dashboard</a>
             </li>
-            <li class="menu__item">
-              <a class="menu__link" href="viewAllJobs">View jobs</a>
+            <li className="menu__item">
+              <a className="menu__link" href="viewJobs">View jobs</a>
             </li>
-            <li class="menu__item">
-              <a class="menu__link" href="createJob">Create a new Job</a>
+            <li className="menu__item">
+              <a className="menu__link" href="createJob">Create a new Job</a>
             </li>
-            <li class="menu__item">
-              <a class="menu__link" href="viewAllInternships">View internships</a>
+            <li className="menu__item">
+              <a className="menu__link" href="viewAllInternships">View internships</a>
             </li>
-            <li class="menu__item">
-              <a class="menu__link" href="createInternship">Create a new internship</a>
+            <li className="menu__item">
+              <a className="menu__link" href="createInternship">Create a new internship</a>
             </li>
           </ul>
         </nav>
-        <main class="admin__main">
+        <main className="admin__main">
           <h2 style={{color:'rebeccapurple'}}>All Internships </h2>
           <p style={{color:'rebeccapurple'}}>Posted By You</p>
-          <div class="dashboard">
-            <table class="table table-bordered table-hover">
+          <div className="dashboard">
+            <table className="table table-bordered table-hover">
                 <thead>
                      <tr>
                         <th>Internship Name</th>
                         <th>Location</th>
                         <th>Post Date</th>
                         <th>Last Date</th>
+                        <th>Status</th>
                         <th>View Applicants</th>
                         <th>View </th>
                         <th>Edit </th>
@@ -102,6 +138,8 @@ function ViewAllInternshipsScreen(){
                                     <td>{jobs.jobLocation}</td>
                                     <td>{moment(jobs.createdAt).format('ll')}</td>
                                     <td>{moment(jobs.lastDate).format('ll')}</td>
+                                    <td><Link onClick={() =>{changeJobStatus(jobs.id,jobs.jobStatus)}}  style={{color:'black'}} >{jobs.jobStatus}</Link>
+                                    </td>
                                     <td><Link style={{color:'black'}} to={{
                                             pathname: `/viewJobApplicants${jobs.id}`
                                             }}>View</Link>
@@ -111,7 +149,7 @@ function ViewAllInternshipsScreen(){
                                             }}>View</Link>
                                     </td>
                                     <td><Link style={{color:'black'}} to={{
-                                            pathname: `/editJob${jobs.id}`
+                                            pathname: `/editInternship${jobs.id}`
                                             }}>Edit</Link>
                                     </td>
                                     <td><Link onClick={() =>{deleteThisJob(jobs.id)}} style={{color:'black'}}>Remove</Link>
@@ -123,7 +161,7 @@ function ViewAllInternshipsScreen(){
          
           </div>
         </main>
-        <footer class="admin__footer">
+        <footer className="admin__footer">
           <span>
             &copy; 2021 JobsZone
           </span>

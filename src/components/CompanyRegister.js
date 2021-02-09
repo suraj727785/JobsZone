@@ -67,31 +67,31 @@ import {createUser} from '../graphql/mutations';
     <form >
     <div className="form-row">
     <div className="form-group col-md-6">
-      <label for="first-name">First Name</label>
+      <label htmlFor="first-name">First Name</label>
       <input type="text" value={formState.fname} onChange={handleChange} className="form-control" name="fname"  placeholder="Enter First Name" required/>
     </div>
     <div className="form-group col-md-6">
-    <label for="last-name">Last Name</label>
+    <label htmlFor="last-name">Last Name</label>
       <input type="text" value={formState.lname} onChange={handleChange} className="form-control" name="lname"  placeholder="Enter Last Name" required/>
     </div>
   </div>
   <div className="form-row">
     <div className="form-group col-md-6">
-    <label for="email">Email</label>
+    <label htmlFor="email">Email</label>
       <input type="email" value={formState.email} onChange={handleChange} className="form-control" name="email"  placeholder="Enter Your Email" required/>
     </div>
     <div className="form-group col-md-6">
-    <label for="mobile-no">Mobile No</label>
+    <label htmlFor="mobile-no">Mobile No</label>
       <input type="text" value={formState.mobileNo}  onChange={handleChange} className="form-control" name="mobileNo"  placeholder="Enter Your Mobile No" required/>
     </div>
   </div>
   <div className="form-row">
     <div className="form-group col-md-6">
-    <label for="age">Age</label>
+    <label htmlFor="age">Age</label>
       <input type="number" value={formState.age} onChange={handleChange} className="form-control" name="age"  placeholder="Enter Your Age" required/>
     </div>
     <div className="form-group col-md-6">
-    <label for="sex">Gender</label>
+    <label htmlFor="sex">Gender</label>
     <select  value={formState.sex}  onChange={handleChange} className="form-control" name="sex" required>
      <option value=''>Select Your Gender</option>
       <option value='M'>Male</option>
@@ -102,26 +102,26 @@ import {createUser} from '../graphql/mutations';
   </div>
   <div className="form-row">
     <div className="form-group col-md-6">
-      <label for="address">Current Address</label>
+      <label htmlFor="address">Current Address</label>
       <input type="text" value={formState.address}  onChange={handleChange} className="form-control" name="address"  placeholder="Enter Your Current Address" required/>
     </div>
     <div className="form-group col-md-6">
-    <label for="company-name">Company Name</label>
+    <label htmlFor="company-name">Company Name</label>
       <input type="text" value={formState.companyName}  onChange={handleChange} className="form-control" name="collegeName"  placeholder="Enter Your Organization Name" required/>
     </div>
   </div>
   <div className="form-row">
     <div className="form-group col-md-6">
-    <label for="userPost">Your Designation</label>
+    <label htmlFor="userPost">Your Designation</label>
       <input type="text" value={formState.userPost} onChange={handleChange} className="form-control" name="userPost"  placeholder="Enter Your Designation in Company" required/>
     </div>
     <div className="form-group col-md-6">
-    <label for="stream">Company Website</label>
+    <label htmlFor="stream">Company Website</label>
       <input type="text" value={formState.companyWebsite}  onChange={handleChange} className="form-control" name="companyWebsite" placeholder="Enter Your Company Website" required/>
     </div>
   </div>
    <div className="form-group">
-    <label for="officeAddress">Office Address</label>
+    <label htmlFor="officeAddress">Office Address</label>
     <input type="text" value={formState.officeAddress}  onChange={handleChange} className="form-control" name="officeAddress" placeholder="Enter Your Company Website" required/>
    </div>
   <div className="text-center submitButton">

@@ -39,65 +39,65 @@ function AdminScreen(){
 
   },[]);
     return (
-        <div class="admin">
-  <header class="admin__header">
+        <div className="admin">
+  <header className="admin__header">
     <a href="/viewAllJobs"><img style={{height:120,width:250}} className="logo" src={logo} alt="" /></a>
-    <div class="toolbar">
+    <div className="toolbar">
       <h3 style={{color:'white'}}>.</h3>
-      <a href="#" class="logout">
+      <a href="#" className="logout">
         Log Out
       </a>
     </div>
   </header>
-  <nav class="admin__nav">
-    <ul class="menu">
-      <li class="menu__item">
-        <a class="menu__link" href="admin">Dashboard</a>
+  <nav className="admin__nav">
+    <ul className="menu">
+      <li className="menu__item">
+        <a className="menu__link" href="admin">Dashboard</a>
       </li>
-      <li class="menu__item">
-        <a class="menu__link" href="approveJobs">View all jobs requests</a>
+      <li className="menu__item">
+        <a className="menu__link" href="approveJobs">View all jobs requests</a>
       </li>
-      <li class="menu__item">
-        <a class="menu__link" href="adminJobs">View jobs</a>
+      <li className="menu__item">
+        <a className="menu__link" href="adminJobs">View jobs</a>
       </li>
-      <li class="menu__item">
-        <a class="menu__link" href="createJob">Create a new Job</a>
+      <li className="menu__item">
+        <a className="menu__link" href="createJob">Create a new Job</a>
       </li>
-      <li class="menu__item">
-        <a class="menu__link" href="adminInternship">View internships</a>
+      <li className="menu__item">
+        <a className="menu__link" href="adminInternship">View internships</a>
       </li>
-      <li class="menu__item">
-        <a class="menu__link" href="createInternship">Create a new internship</a>
+      <li className="menu__item">
+        <a className="menu__link" href="createInternship">Create a new internship</a>
       </li>
-      <li class="menu__item">
-        <a class="menu__link" href="viewAllUsers">View All users</a>
+      <li className="menu__item">
+        <a className="menu__link" href="viewAllUsers">View All users</a>
       </li>
-      <li class="menu__item">
-        <a class="menu__link" href="viewAllCompanies">View All Companies</a>
+      <li className="menu__item">
+        <a className="menu__link" href="viewAllCompanies">View All Companies</a>
       </li>
     </ul>
   </nav>
-  <main class="admin__main">
+  <main className="admin__main">
     <h2 style={{color:'rebeccapurple'}}>Dashboard</h2>
-    <div class="dashboard">
-      <div class="dashboard__item">
-        <div class="admincard">
+    <div className="dashboard">
+      <div className="dashboard__item">
+        <div className="admincard">
           <h4>Total Jobs:</h4>
         <h1 style={{fontSize:76,color:'rebeccapurple'}}>{jobs.length} Jobs</h1>
         <a href="adminJobs">
-                <div class="panel-footer">
-                    <span class="pull-left">View All Jobs</span>
+                <div className="panel-footer">
+                    <span className="pull-left">View All Jobs</span>
                 </div>
             </a>
         </div>
       </div>
-      <div class="dashboard__item">
-        <div class="admincard">
+      <div className="dashboard__item">
+        <div className="admincard">
           <h4>Total Internships:</h4>
         <h1 style={{fontSize:76,color:'rebeccapurple'}}>{internships.length} Internships</h1>
         <a href="adminInternship">
-                <div class="panel-footer">
-                    <span class="pull-left">View All Internship</span>
+                <div className="panel-footer">
+                    <span className="pull-left">View All Internship</span>
                 </div>
             </a>
         </div>
@@ -106,7 +106,7 @@ function AdminScreen(){
     </div>
    
   </main>
-  <footer class="admin__footer">
+  <footer className="admin__footer">
     <span>
       &copy; 2021 JobsZone.
     </span>

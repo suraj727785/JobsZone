@@ -215,54 +215,54 @@ function EditInternshipForm(props){
     <form >
     <div className="form-row">
     <div className="form-group col-md-6">
-      <label for="job-title">Job Title</label>
+      <label htmlFor="job-title">Job Title</label>
       <input type="text" value={jobDetails.jobTitle} onChange={handleChange} className="form-control" name="jobTitle" id="job-title" placeholder="Enter Job Title" />
     </div>
     <div className="form-group col-md-6">
-    <label for="job-name">Job Name</label>
+    <label htmlFor="job-name">Job Name</label>
       <input type="text" value={jobDetails.jobName} onChange={handleChange} className="form-control" name="jobName" id="job-name" placeholder="Enter Job Name" />
     </div>
   </div>
   <div className="form-row">
     <div className="form-group col-md-6">
-    <label for="company-name">Company Name</label>
+    <label htmlFor="company-name">Company Name</label>
       <input type="text" value={jobDetails.companyName} onChange={handleChange} className="form-control" name="companyName" id="job-title" placeholder="Enter Your Company Name" />
     </div>
     <div className="form-group col-md-6">
-    <label for="company-website">Company Website</label>
+    <label htmlFor="company-website">Company Website</label>
       <input type="text" value={jobDetails.companyWebsite} onChange={handleChange} className="form-control" name="companyWebsite" id="job-website" placeholder="Enter Company Official Website" />
     </div>
   </div>
   <div className="form-group">
-    <label for="about-company">About Company</label>
+    <label htmlFor="about-company">About Company</label>
     <textarea className="form-control" value={jobDetails.aboutCompany} onChange={handleChange} id="about-company" name="aboutCompany" rows="3"></textarea>
   </div>
   <div className="form-row">
   <div className="form-group col-md-6">
-      <label for="Duration">Duration</label>
+      <label htmlFor="Duration">Duration</label>
       <input type="text" className="form-control" value={jobDetails.duration} onChange={handleChange} name="duration" id="duration" placeholder="Enter Internship Duration (eg:- 2 months or 12 weeks )" />
     </div>  
     <div className="form-group col-md-6">
-      <label for="salary">Stipend</label>
+      <label htmlFor="salary">Stipend</label>
       <input type="text" className="form-control" value={jobDetails.salary} onChange={handleChange} name="salary" id="stipend" placeholder="Enter Stipend Offered (eg:- 10000 /month or unpaid )" />
     </div>   
   </div>
   <div className="form-row">
     <div className="form-group col-md-6">
-    <label for="internship-location">Internship Loaction</label>
+    <label htmlFor="internship-location">Internship Loaction</label>
       <input type="text" className="form-control" value={jobDetails.jobLocation} onChange={handleChange} name="jobLocation" id="internship-location" placeholder="Enter Internship Location (for multiple enter Bengluru/Pune )" />
     </div>
     <div className="form-group col-md-6">
-    <label for="last-date">Last Date To Apply</label>
+    <label htmlFor="last-date">Last Date To Apply</label>
       <input type="date" className="form-control" value={jobDetails.lastDate} onChange={handleChange} name="lastDate" id="lastDate"  />
     </div>
   </div>
   <div className="form-group">
-    <label for="positions">No Of Postions</label>
+    <label htmlFor="positions">No Of Postions</label>
     <input type="number" className="form-control" value={jobDetails.positions} onChange={handleChange} id="positions" name="positions" min={1} max={1000000}/>
   </div>
   <div className="form-group">
-    <label htmlFor="job-description">Job Description </label>
+    <label htmlhtmlFor="job-description">Job Description </label>
       {discriptionFields.map((field, idx) => {
         return (
           <div key={`${field}-${idx}`}>
@@ -280,7 +280,7 @@ function EditInternshipForm(props){
       })}
   </div>
   <div className="form-group">
-    <label htmlFor="desired-skills">Desired Skills  </label>
+    <label htmlhtmlFor="desired-skills">Desired Skills  </label>
       {skillsFields.map((field, idx) => {
         return (
           <div key={`${field}-${idx}`}>
@@ -298,7 +298,7 @@ function EditInternshipForm(props){
       })}
   </div>
   <div className="form-group">
-    <label htmlFor="criteria">Add Criteria </label>
+    <label htmlhtmlFor="criteria">Add Criteria </label>
 
       {criteriaFields.map((field, idx) => {
         return (
@@ -317,7 +317,7 @@ function EditInternshipForm(props){
       })}
   </div>
   <div className="form-group">
-    <label for="desired-skills">Perks (add multiple lines) </label>
+    <label htmlFor="desired-skills">Perks (add multiple lines) </label>
 
       {perksFields.map((field, idx) => {
         return (

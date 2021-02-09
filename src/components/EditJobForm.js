@@ -182,50 +182,50 @@ function EditJobForm(props){
     <form >
     <div className="form-row">
     <div className="form-group col-md-6">
-      <label htmlFor="job-title">Job Title</label>
+      <label htmlhtmlFor="job-title">Job Title</label>
       <input type="text" value={jobDetails.jobTitle} onChange={handleChange} className="form-control" name="jobTitle" id="job-title" placeholder="Enter Job Title" />
     </div>
     <div className="form-group col-md-6">
-    <label htmlFor="job-name">Job Name</label>
+    <label htmlhtmlFor="job-name">Job Name</label>
       <input type="text" value={jobDetails.jobName} onChange={handleChange} className="form-control" name="jobName" id="job-name" placeholder="Enter Job Name" />
     </div>
   </div>
   <div className="form-row">
     <div className="form-group col-md-6">
-    <label htmlFor="company-name">Company Name</label>
+    <label htmlhtmlFor="company-name">Company Name</label>
       <input type="text" value={jobDetails.companyName} onChange={handleChange} className="form-control" name="companyName" id="job-title" placeholder="Enter Your Company Name" />
     </div>
     <div className="form-group col-md-6">
-    <label htmlFor="company-website">Company Website</label>
+    <label htmlhtmlFor="company-website">Company Website</label>
       <input type="text" value={jobDetails.companyWebsite} onChange={handleChange} className="form-control" name="companyWebsite" id="job-website" placeholder="Enter Company Official Website" />
     </div>
   </div>
   <div className="form-group">
-    <label htmlFor="about-company">About Company</label>
+    <label htmlhtmlFor="about-company">About Company</label>
     <textarea className="form-control" value={jobDetails.aboutCompany} onChange={handleChange} id="about-company" name="aboutCompany" rows="3"></textarea>
   </div>
   <div className="form-row">
   <div className="form-group col-md-6">
-    <label htmlFor="experience">Experience Required</label>
+    <label htmlhtmlFor="experience">Experience Required</label>
     <input type="text" id="experience" value={jobDetails.experience} onChange={handleChange}  name="experience"className="form-control" placeholder="Enter Experience Required For Job (eg:- 0-1years)" />
     </div>
     <div className="form-group col-md-6">
-      <label htmlFor="salary">Salary</label>
+      <label htmlhtmlFor="salary">Salary</label>
       <input type="text" value={jobDetails.salary} onChange={handleChange} className="form-control" name="salary" id="salary" placeholder="Enter Salary Offered (eg:- 3 LPA )" />
     </div>   
   </div>
   <div className="form-row">
     <div className="form-group col-md-6">
-    <label htmlFor="job-location">Job Loaction</label>
+    <label htmlhtmlFor="job-location">Job Loaction</label>
       <input type="text" value={jobDetails.jobLocation} onChange={handleChange} className="form-control" name="jobLocation" id="job-location" placeholder="Enter Job Location (for multiple enter Bengluru/Pune )" />
     </div>
     <div className="form-group col-md-6">
-    <label htmlFor="last-date">Last Date To Apply</label>
+    <label htmlhtmlFor="last-date">Last Date To Apply</label>
       <input type="date" value={jobDetails.lastDate} onChange={handleChange} className="form-control" name="lastDate" id="lastDate"  />
     </div>
   </div>
   <div className="form-group">
-    <label htmlFor="job-description">Job Description </label>
+    <label htmlhtmlFor="job-description">Job Description </label>
       {discriptionFields.map((field, idx) => {
         return (
           <div key={`${field}-${idx}`}>
@@ -243,7 +243,7 @@ function EditJobForm(props){
       })}
   </div>
   <div className="form-group">
-    <label htmlFor="desired-skills">Desired Skills  </label>
+    <label htmlhtmlFor="desired-skills">Desired Skills  </label>
       {skillsFields.map((field, idx) => {
         return (
           <div key={`${field}-${idx}`}>
@@ -261,7 +261,7 @@ function EditJobForm(props){
       })}
   </div>
   <div className="form-group">
-    <label htmlFor="criteria">Add Criteria </label>
+    <label htmlhtmlFor="criteria">Add Criteria </label>
 
       {criteriaFields.map((field, idx) => {
         return (

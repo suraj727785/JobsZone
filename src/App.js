@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {Route,Switch} from 'react-router-dom';
 import Search from './components/Search';
 import CreateJobScreen from './screens/CreateJobScreen';
@@ -28,7 +28,6 @@ import ViewJobRequestsScreen from './screens/ViewJobRequestsScreen';
 import ViewAllUsersScreen from './screens/ViewAllUsersScreen';
 import ViewAllCompaniesScreen from './screens/ViewAllCompaniesScreen';
 import EditJobScreen from './screens/EditJobScreen';
-import EditInternshipForm from './components/EditInternshipForm';
 import EditInternshipScreen from './screens/EditInternshipScreen';
 import ViewAllJobApplicantsScreen from './screens/ViewAllJobApplicantsScreen';
 Amplify.configure(awsExports);
