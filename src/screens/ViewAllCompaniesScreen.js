@@ -88,12 +88,7 @@ function ViewAllCompaniesScreen(props){
         <div className="admin">
         <header className="admin__header">
           <a href="/viewAllJobs"><img style={{height:120,width:250}} className="logo" src={logo} alt="" /></a>
-          <div className="toolbar">
-            <h3 style={{color:'white'}}>.</h3>
-            <a href="#" className="logout">
-              Log Out
-            </a>
-          </div>
+          
         </header>
         <nav className="admin__nav">
     <ul className="menu">
