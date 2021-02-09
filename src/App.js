@@ -8,11 +8,10 @@ import JobDetailsScreen from './screens/JobDetailsScreen';
 import JobScreen from './screens/JobScreen';
 import ApplyJobScreen from './screens/ApplyJobScreen';
 import { withAuthenticator} from '@aws-amplify/ui-react';
-import Amplify, { API, Auth, graphqlOperation } from "aws-amplify";
+import Amplify from "aws-amplify";
 import awsExports from "./aws-exports";
 import ProfileScreen from './screens/ProfileScreen';
 import FirstRegisterScreen from './screens/FirstRegisterScreen';
-import {getUser, listUsers} from './graphql/queries';
 import EditProfileScreen from './screens/EditProfileScreen';
 import InternshipScreen from './screens/InternshipScreen';
 import CompanyScreen from './screens/CompanyScreen';
@@ -28,6 +27,10 @@ import ViewAdminJobApplicantScreen from './screens/ViewAdminJobApplicantScreen';
 import ViewJobRequestsScreen from './screens/ViewJobRequestsScreen';
 import ViewAllUsersScreen from './screens/ViewAllUsersScreen';
 import ViewAllCompaniesScreen from './screens/ViewAllCompaniesScreen';
+import EditJobScreen from './screens/EditJobScreen';
+import EditInternshipForm from './components/EditInternshipForm';
+import EditInternshipScreen from './screens/EditInternshipScreen';
+import ViewAllJobApplicantsScreen from './screens/ViewAllJobApplicantsScreen';
 Amplify.configure(awsExports);
 
 function App(){
@@ -59,7 +62,9 @@ function App(){
                 <Route path="/approveJobs" component={ViewJobRequestsScreen}/>
                 <Route path="/viewAllUsers" component={ViewAllUsersScreen}/>
                 <Route path="/viewAllCompanies" component={ViewAllCompaniesScreen}/>
-                
+                <Route path="/editJob:jobId" component={EditJobScreen}/>
+                <Route path="/editInternship:jobId" component={EditInternshipScreen}/>
+                <Route path="/viewAllJobApplicants:jobId" component={ViewAllJobApplicantsScreen}/>
             </Switch>
         </main>
         

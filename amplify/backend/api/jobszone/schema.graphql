@@ -40,7 +40,7 @@ type Job @model {
   jobType:String
   jobStatus:String
   companyName:String
-  comapanyWebsite:String
+  companyWebsite:String
   aboutCompany:String
   experience:String
   duration:String

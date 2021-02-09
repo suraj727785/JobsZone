@@ -1,6 +1,6 @@
 import { API, Auth, graphqlOperation } from 'aws-amplify';
 import React,{useEffect, useState} from 'react';
-import {createUser, updateUser} from '../graphql/mutations';
+import {updateUser} from '../graphql/mutations';
 import { getUser } from '../graphql/queries';
 
     const EditCompanyProfile =()=>{

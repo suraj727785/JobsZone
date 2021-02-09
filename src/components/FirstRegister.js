@@ -48,7 +48,7 @@ import { withRouter } from 'react-router-dom';
               sex:formState.sex,
               email:formState.email,
               mobileNo:formState.mobileNo,
-              userRole:"jobSeeker",
+              userRole:"JobSeeker",
               address:formState.address,
               collegeName:formState.collegeName,
               degree:formState.degree,

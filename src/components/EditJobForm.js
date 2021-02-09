@@ -1,33 +1,75 @@
 import { API, Auth, graphqlOperation } from 'aws-amplify';
 import React,{useEffect, useState} from 'react';
-import { createJob,createJobCretaria,createJobDescription,createJobSkill,updateJobCount } from '../graphql/mutations';
-import { getJobCount } from '../graphql/queries';
-import { withRouter } from 'react-router-dom';
+import { updateJob,updateJobCretaria, updateJobDescription, updateJobSkill } from '../graphql/mutations';
+import { getJob } from '../graphql/queries';
+import { useParams, withRouter } from 'react-router-dom';
 
-function CreateJobForm(props){
+function EditJobForm(props){
 
+  const {jobId} =useParams();
   const [userId,setUserId]=useState('');
-  const [discriptionFields, setDiscriptionFields] = useState([{ value: '' }]);
-  const [skillsFields, setSkillsFields] = useState([{ value: '' }]);
-  const [criteriaFields, setCriteriaFields] = useState([{ value: '' }]);
+  const [discriptionFields, setDiscriptionFields] = useState([{ value: '',id:'' }]);
+  const [skillsFields, setSkillsFields] = useState([{ value: '',id:'' }]);
+  const [criteriaFields, setCriteriaFields] = useState([{ value: '',id:'' }]);
   const [jobDetails,updateJobDetils]=useState({
     jobTitle:'',jobName:'',companyName:'',companyWebsite:'',aboutCompany:'',
     experience:'',salary:'',jobLocation:'',lastDate:''
   });
-  const[jobCount,setJobCount]=useState(1);
   useEffect(()=>{
     const fetchJobCount= async()=>{
       const userInfo=await Auth.currentAuthenticatedUser({bypassCache:true});
       setUserId(userInfo.attributes.sub);
-      const jobCountData = await API.graphql(
+      const oldJobData= await API.graphql(
         graphqlOperation(
-          getJobCount,{
-            id:'jobCount'
+          getJob,{
+            id:jobId
           }
         )
       );
-     setJobCount(jobCountData.data.getJobCount.count+1);
-    }
+      updateJobDetils({
+        jobTitle:oldJobData.data.getJob.jobTitle,
+        jobName:oldJobData.data.getJob.jobName,
+        companyName:oldJobData.data.getJob.companyName,
+        companyWebsite:oldJobData.data.getJob.companyWebsite,
+        aboutCompany:oldJobData.data.getJob.aboutCompany,
+        experience:oldJobData.data.getJob.experience,
+        salary:oldJobData.data.getJob.salary,
+        jobLocation:oldJobData.data.getJob.jobLocation,
+        lastDate:oldJobData.data.getJob.lastDate,
+
+      });
+      let discriptionFieldsCount = oldJobData.data.getJob.jobDescription.items.length;
+      let newDis=0;
+      let values = [];
+      while(newDis<discriptionFieldsCount){ 
+        values.push({ 
+          value: oldJobData.data.getJob.jobDescription.items[newDis].content,
+          id: oldJobData.data.getJob.jobDescription.items[newDis].id });
+        newDis=newDis+1;
+      }
+      setDiscriptionFields(values);
+      console.log(oldJobData);
+      let criteriaFieldsCount = oldJobData.data.getJob.jobCretaria.items.length;
+      let newCri=0;
+      values = [];
+      while(newCri<criteriaFieldsCount){    
+        values.push({ 
+          value: oldJobData.data.getJob.jobCretaria.items[newCri].content,
+          id: oldJobData.data.getJob.jobCretaria.items[newCri].id});
+        newCri=newCri+1;
+      }
+      setCriteriaFields(values);
+      let skillsFieldsCount = oldJobData.data.getJob.jobSkills.items.length;
+      let newSki=0;
+      values=[];
+      while(newSki<skillsFieldsCount){ 
+        values.push({ 
+          value: oldJobData.data.getJob.jobSkills.items[newSki].content,
+          id: oldJobData.data.getJob.jobSkills.items[newSki].id });
+        newSki=newSki+1;
+      }
+      setSkillsFields(values)
+     }
 
      fetchJobCount();
 
@@ -39,51 +81,21 @@ function CreateJobForm(props){
     setDiscriptionFields(values);
   }
 
-  function handleDiscriptionAdd() {
-    const values = [...discriptionFields];
-    values.push({ value: null });
-    setDiscriptionFields(values);
-  }
 
-  function handleDiscriptionRemove(i) {
-    const values = [...discriptionFields];
-    values.splice(i, 1);
-    setDiscriptionFields(values);
-  }
   function handleSkillsChange(i, event) {
     const values = [...skillsFields];
     values[i].value = event.target.value;
     setSkillsFields(values);
   }
 
-  function handleSkillsAdd() {
-    const values = [...skillsFields];
-    values.push({ value: null });
-    setSkillsFields(values);
-  }
 
-  function handleSkillsRemove(i) {
-    const values = [...skillsFields];
-    values.splice(i, 1);
-    setSkillsFields(values);
-  }
   function handleCriteriaChange(i, event) {
     const values = [...criteriaFields];
     values[i].value = event.target.value;
     setCriteriaFields(values);
   }
 
-  function handleCriteriaAdd() {
-    const values = [...criteriaFields];
-    values.push({ value: null });
-    setCriteriaFields(values);
-  }
 
-  function handleCriteriaRemove(i) {
-    const values = [...criteriaFields];
-    values.splice(i, 1);
-    setCriteriaFields(values);
-  }
   function handleChange(evt) {
     const value = evt.target.value;
     updateJobDetils({
@@ -92,23 +104,11 @@ function CreateJobForm(props){
     });
   }
    const createNewJob=async()=>{
-    
      await API.graphql(
        graphqlOperation(
-         updateJobCount,{
+         updateJob,{
            input:{
-             id:'jobCount',
-             count:jobCount
-           }
-
-         }
-       )
-     );
-     await API.graphql(
-       graphqlOperation(
-         createJob,{
-           input:{
-            id:`job${jobCount}`,
+            id:jobId,
             jobName:jobDetails.jobName,
             jobType:"job",
             jobUserId:userId,
@@ -130,10 +130,10 @@ function CreateJobForm(props){
      while(iDis<lDis){
      await API.graphql(
        graphqlOperation(
-         createJobDescription,{
+         updateJobDescription,{
            input:{
-             content:discriptionFields[iDis].value,
-             jobID:`job${jobCount}`
+             id:discriptionFields[iDis].id,
+             content:discriptionFields[iDis].value
            }
          }
        )
@@ -145,10 +145,10 @@ function CreateJobForm(props){
         while(iSkill<lSkil){
      await API.graphql(
       graphqlOperation(
-        createJobSkill,{
+        updateJobSkill,{
           input:{
             content:skillsFields[iSkill].value,
-            jobID:`job${jobCount}`
+            id:skillsFields[iSkill].id
           }
         }
       )
@@ -160,17 +160,17 @@ function CreateJobForm(props){
       while(iCri<lCri){
     await API.graphql(
       graphqlOperation(
-        createJobCretaria,{
+        updateJobCretaria,{
           input:{
             content:criteriaFields[iCri].value,
-            jobID:`job${jobCount}`
+            id:criteriaFields[iCri].id
           }
         }
       )
     );
     iCri=iCri+1
       }
-      alert("Sucessfully created a job. Your Job will be active within 2 hrs, If not contact us.");
+      alert("Sucessfully updated a job. Your Job will be active within 2 hrs, If not contact us.");
       props.history.push('/viewAllJobs');
 
         }
@@ -225,11 +225,7 @@ function CreateJobForm(props){
     </div>
   </div>
   <div className="form-group">
-    <label htmlFor="job-description">Job Description (add multiple lines) </label>
-    <button className="btn" style={{marginLeft:30}} type="button" onClick={() => handleDiscriptionAdd()}>
-       Add more field
-      </button>
-
+    <label htmlFor="job-description">Job Description </label>
       {discriptionFields.map((field, idx) => {
         return (
           <div key={`${field}-${idx}`}>
@@ -242,19 +238,12 @@ function CreateJobForm(props){
               placeholder="Describe Job"
               onChange={e => handleDiscriptionChange(idx, e)}
             />
-            <button className="btn" type="button" onClick={() => handleDiscriptionRemove(idx)}>
-             Remove
-            </button>
           </div>
         );
       })}
   </div>
   <div className="form-group">
-    <label htmlFor="desired-skills">Desired Skills (add multiple lines) </label>
-    <button className="btn" style={{marginLeft:30}} type="button" onClick={() => handleSkillsAdd()}>
-       Add more field
-      </button>
-
+    <label htmlFor="desired-skills">Desired Skills  </label>
       {skillsFields.map((field, idx) => {
         return (
           <div key={`${field}-${idx}`}>
@@ -267,18 +256,12 @@ function CreateJobForm(props){
               placeholder="Add desired skills required for Job"
               onChange={e => handleSkillsChange(idx, e)}
             />
-            <button className="btn" type="button" onClick={() => handleSkillsRemove(idx)}>
-             Remove
-            </button>
           </div>
         );
       })}
   </div>
   <div className="form-group">
-    <label htmlFor="criteria">Add Criteria (add multiple lines) </label>
-    <button className="btn" style={{marginLeft:30}} type="button" onClick={() => handleCriteriaAdd()}>
-       Add more field
-      </button>
+    <label htmlFor="criteria">Add Criteria </label>
 
       {criteriaFields.map((field, idx) => {
         return (
@@ -292,15 +275,12 @@ function CreateJobForm(props){
               placeholder="Enter criteria required for job"
               onChange={e => handleCriteriaChange(idx, e)}
             />
-            <button className="btn" type="button" onClick={() => handleCriteriaRemove(idx)}>
-             Remove
-            </button>
           </div>
         );
       })}
   </div>
   <div className="text-center submitButton">
-            <a onClick={createNewJob} style={{height:50,width:120,fontFamily:'sans-serif'}} name="addJob" type="button" className="btn btn-primary">Add Job</a>
+            <a onClick={createNewJob} style={{height:50,width:120,fontFamily:'sans-serif'}} name="addJob" type="button" className="btn btn-primary">Update Job</a>
           </div>
 </form>
 
@@ -310,4 +290,4 @@ function CreateJobForm(props){
 
     );
 }
-export default withRouter(CreateJobForm);
+export default withRouter(EditJobForm);

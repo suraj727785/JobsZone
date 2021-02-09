@@ -160,7 +160,7 @@ export const onCreateJobApplicant = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -233,7 +233,7 @@ export const onUpdateJobApplicant = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -306,7 +306,7 @@ export const onDeleteJobApplicant = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -347,7 +347,7 @@ export const onCreateJob = /* GraphQL */ `
       jobType
       jobStatus
       companyName
-      comapanyWebsite
+      companyWebsite
       aboutCompany
       experience
       duration
@@ -421,7 +421,7 @@ export const onUpdateJob = /* GraphQL */ `
       jobType
       jobStatus
       companyName
-      comapanyWebsite
+      companyWebsite
       aboutCompany
       experience
       duration
@@ -495,7 +495,7 @@ export const onDeleteJob = /* GraphQL */ `
       jobType
       jobStatus
       companyName
-      comapanyWebsite
+      companyWebsite
       aboutCompany
       experience
       duration
@@ -574,7 +574,7 @@ export const onCreatePerk = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -619,7 +619,7 @@ export const onUpdatePerk = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -664,7 +664,7 @@ export const onDeletePerk = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -709,7 +709,7 @@ export const onCreateJobDescription = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -754,7 +754,7 @@ export const onUpdateJobDescription = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -799,7 +799,7 @@ export const onDeleteJobDescription = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -844,7 +844,7 @@ export const onCreateJobCretaria = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -889,7 +889,7 @@ export const onUpdateJobCretaria = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -934,7 +934,7 @@ export const onDeleteJobCretaria = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -979,7 +979,7 @@ export const onCreateJobSkill = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -1024,7 +1024,7 @@ export const onUpdateJobSkill = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -1069,7 +1069,7 @@ export const onDeleteJobSkill = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration

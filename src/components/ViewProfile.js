@@ -39,7 +39,7 @@ function ViewProfile(){
           <h6>Mob No. : {user.mobileNo}</h6>
           <h6>Address : {user.address}</h6>
         </div>
-          {user.userRole==="jobSeeker"?
+          {user.userRole==="JobSeeker"?
           <div>
             <div className="tab">
                 <h2>Academics Details</h2>

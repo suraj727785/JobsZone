@@ -17,7 +17,6 @@ function ViewJobRequestsScreen(props){
           graphqlOperation(
             listJobs,{
                 filter:{
-                  jobType: {contains: "job"},
                   jobStatus:{contains:"created"}
                 }
             }   

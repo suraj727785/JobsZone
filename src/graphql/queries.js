@@ -120,7 +120,7 @@ export const getJobApplicant = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -195,7 +195,7 @@ export const listJobApplicants = /* GraphQL */ `
           jobType
           jobStatus
           companyName
-          comapanyWebsite
+          companyWebsite
           aboutCompany
           experience
           duration
@@ -223,7 +223,7 @@ export const getJob = /* GraphQL */ `
       jobType
       jobStatus
       companyName
-      comapanyWebsite
+      companyWebsite
       aboutCompany
       experience
       duration
@@ -302,7 +302,7 @@ export const listJobs = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -347,7 +347,7 @@ export const getPerk = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -397,7 +397,7 @@ export const listPerks = /* GraphQL */ `
           jobType
           jobStatus
           companyName
-          comapanyWebsite
+          companyWebsite
           aboutCompany
           experience
           duration
@@ -429,7 +429,7 @@ export const getJobDescription = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -479,7 +479,7 @@ export const listJobDescriptions = /* GraphQL */ `
           jobType
           jobStatus
           companyName
-          comapanyWebsite
+          companyWebsite
           aboutCompany
           experience
           duration
@@ -511,7 +511,7 @@ export const getJobCretaria = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -561,7 +561,7 @@ export const listJobCretarias = /* GraphQL */ `
           jobType
           jobStatus
           companyName
-          comapanyWebsite
+          companyWebsite
           aboutCompany
           experience
           duration
@@ -593,7 +593,7 @@ export const getJobSkill = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -643,7 +643,7 @@ export const listJobSkills = /* GraphQL */ `
           jobType
           jobStatus
           companyName
-          comapanyWebsite
+          companyWebsite
           aboutCompany
           experience
           duration
@@ -717,7 +717,7 @@ export const perksByJob = /* GraphQL */ `
           jobType
           jobStatus
           companyName
-          comapanyWebsite
+          companyWebsite
           aboutCompany
           experience
           duration
@@ -764,7 +764,7 @@ export const jobDescriptionByJob = /* GraphQL */ `
           jobType
           jobStatus
           companyName
-          comapanyWebsite
+          companyWebsite
           aboutCompany
           experience
           duration
@@ -811,7 +811,7 @@ export const jobCretariaByJob = /* GraphQL */ `
           jobType
           jobStatus
           companyName
-          comapanyWebsite
+          companyWebsite
           aboutCompany
           experience
           duration
@@ -858,7 +858,7 @@ export const jobSkillsByJob = /* GraphQL */ `
           jobType
           jobStatus
           companyName
-          comapanyWebsite
+          companyWebsite
           aboutCompany
           experience
           duration

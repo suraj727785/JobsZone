@@ -59,7 +59,7 @@ function JobDetails(props){
         <div className="jobContainer">
             <h1>{jobDetails.jobTitle}</h1>
             <h4>{jobDetails.jobName}</h4>
-            <p>{jobDetails.companyName} <a href={`${jobDetails.comapanyWebsite}`}><FiExternalLink size={18}/></a></p>
+            <p>{jobDetails.companyName} <a href={`${jobDetails.companyWebsite}`}><FiExternalLink size={18}/></a></p>
             <ul className="jobTopList" >
                 <li>
                     <ul>
@@ -86,7 +86,7 @@ function JobDetails(props){
                     </ul>
                 </li>
             </ul>
-            <h4 style={{marginTop:30}}>About Company<a href={`${jobDetails.comapanyWebsite}`}><FiExternalLink size={22}/></a></h4>
+            <h4 style={{marginTop:30}}>About Company<a href={`${jobDetails.companyWebsite}`}><FiExternalLink size={22}/></a></h4>
             <p style={{marginTop:15}}>{jobDetails.aboutCompany}</p>
             <h5>Job Description</h5>
             <ul>

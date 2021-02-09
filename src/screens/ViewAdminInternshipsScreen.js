@@ -139,7 +139,7 @@ function ViewAdminInternshipsScreen(){
                     {jobs.map(jobs=>
                                 <tr>
                                     <td><Link style={{color:'black'}} to={{
-                                            pathname: `/job${jobs.id}`
+                                            pathname: `/internship${jobs.id}`
                                             }}>{jobs.jobName}</Link></td>
                                     <td>{jobs.companyName}</td>        
                                     <td>{jobs.jobLocation}</td>
@@ -148,11 +148,11 @@ function ViewAdminInternshipsScreen(){
                                     <td><Link onClick={() =>{changeJobStatus(jobs.id,jobs.jobStatus)}}  style={{color:'black'}} >{jobs.jobStatus}</Link>
                                     </td>
                                     <td><Link style={{color:'black'}} to={{
-                                            pathname: `/viewJobApplicants${jobs.id}`
+                                            pathname: `/viewAllJobApplicants${jobs.id}`
                                             }}>View</Link>
                                     </td>
                                     <td><Link style={{color:'black'}} to={{
-                                            pathname: `/editJob${jobs.id}`
+                                            pathname: `/editInternship${jobs.id}`
                                             }}>Edit</Link>
                                     </td>
                                     <td><Link onClick={() =>{deleteThisJob(jobs.id)}} style={{color:'black'}}>Remove</Link>

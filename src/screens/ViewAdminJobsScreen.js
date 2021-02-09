@@ -152,7 +152,7 @@ function ViewAdminJobsScreen(props){
                                     </td>
 
                                     <td><Link style={{color:'black'}} to={{
-                                            pathname: `/viewJobApplicants${jobs.id}`
+                                            pathname: `/viewAllJobApplicants${jobs.id}`
                                             }}>View</Link>
                                     </td>
                                     <td><Link style={{color:'black'}} to={{

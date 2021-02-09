@@ -45,7 +45,7 @@ function InternshipDetails(){
         <div className="jobContainer">
             <h1>{jobDetails.jobTitle}</h1>
             <h4>{jobDetails.jobName}</h4>
-            <p>{jobDetails.companyName} <a href={`${jobDetails.comapanyWebsite}`}><FiExternalLink size={18}/></a></p>
+            <p>{jobDetails.companyName} <a href={`${jobDetails.companyWebsite}`}><FiExternalLink size={18}/></a></p>
             <ul className="jobTopList" >
                 <li>
                     <ul>

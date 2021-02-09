@@ -86,13 +86,13 @@ function ViewAllInternshipsScreen(){
                 <thead>
                      <tr>
                         <th>Internship Name</th>
-                        <th>Internship Location</th>
+                        <th>Location</th>
                         <th>Post Date</th>
                         <th>Last Date</th>
                         <th>View Applicants</th>
-                        <th>View Internship Details</th>
-                        <th>Edit Internship Details</th>
-                        <th>Delete Internship</th>
+                        <th>View </th>
+                        <th>Edit </th>
+                        <th>Delete </th>
                     </tr>   
                 </thead>
                 <tbody>

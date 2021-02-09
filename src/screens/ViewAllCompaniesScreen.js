@@ -5,7 +5,7 @@ import { API, Auth, graphqlOperation } from 'aws-amplify';
 import {listJobs, listUsers} from '../graphql/queries';
 import {Link,withRouter} from 'react-router-dom';
 import moment from 'moment';
-import { deleteJob, deleteUser } from '../graphql/mutations';
+import { deleteJob, deleteUser, updateUser } from '../graphql/mutations';
 
 function ViewAllCompaniesScreen(props){
 
@@ -18,7 +18,7 @@ function ViewAllCompaniesScreen(props){
           graphqlOperation(
             listUsers,{
                 filter:{
-                  userRole: {contains: "jobProvider"},
+                  userRole: {contains: "JobProvider"},
                 }
             }   
         ));
@@ -55,7 +55,34 @@ function ViewAllCompaniesScreen(props){
       );
       alert("User Deleted Sucessfully");
       window.location.reload();
-    }; 
+    };
+    const changeUserRole=async(userId,userRole)=>{
+      if(userRole==="JobProvider"){
+      await API.graphql(
+        graphqlOperation(
+          updateUser,{
+            input:{
+              id:userId,
+              userRole:"Admin"
+            }
+          }
+        )
+      );
+        }
+        if(userRole==="Admin"){
+          await API.graphql(
+            graphqlOperation(
+              updateUser,{
+                input:{
+                  id:userId,
+                  userRole:"JobProvider"
+                }
+              }
+            )
+          );
+            }
+            window.location.reload();
+    } 
 
     return (
         <div class="admin">
@@ -108,6 +135,7 @@ function ViewAllCompaniesScreen(props){
                         <th>Designation</th>
                         <th>Office Address</th>
                         <th>Website</th>
+                        <th>Role</th>
                         <th>Edit Details</th>
                         <th>Delete</th>
                     </tr>   
@@ -122,6 +150,8 @@ function ViewAllCompaniesScreen(props){
                                     <td>{users.userPost}</td>
                                     <td>{users.officeAddress}</td>
                                     <td>{users.companyWebsite}</td>
+                                    <td><Link onClick={() =>{changeUserRole(users.id,users.userRole)}} style={{color:'black'}}>{users.userRole}</Link>
+                                    </td>
                                     <td><Link style={{color:'black'}} to={{
                                             pathname: `/editJob${users.id}`
                                             }}>Edit</Link>
@@ -140,6 +170,8 @@ function ViewAllCompaniesScreen(props){
                                     <td>{admins.officeAddress}</td>
                                     <td><a style={{color:'black'}} href={admins.companyWebsite}
                                         >{admins.companyWebsite}</a></td>
+                                    <td><Link onClick={() =>{changeUserRole(admins.id,admins.userRole)}} style={{color:'black'}}>{admins.userRole}</Link>
+                                    </td>
                                     <td><Link style={{color:'black'}} to={{
                                             pathname: `/editJob${admins.id}`
                                             }}>Edit</Link>

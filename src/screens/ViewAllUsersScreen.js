@@ -17,7 +17,7 @@ function ViewAllUsersScreen(props){
           graphqlOperation(
             listUsers,{
                 filter:{
-                  userRole: {contains: "jobSeeker"},
+                  userRole: {contains: "JobSeeker"},
                 }
             }   
         ));

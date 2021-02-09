@@ -6,41 +6,97 @@ import {listJobApplicants} from '../graphql/queries';
 
 import {Link, useParams, withRouter} from 'react-router-dom';
 import moment from 'moment';
+import { updateJobApplicant } from '../graphql/mutations';
 
 function ViewJobApplicantsScreen(props){
-    const {jobId} =useParams();
-    const [jobApplicants,setJobApplicants]=useState([]);
-    useEffect(()=>{
-        try{
-          const getJobApplicant=async()=>{
-          const AllApplicants=await API.graphql(
-            graphqlOperation(
-              listJobApplicants,{
-                filter:{
-                  jobID: {contains: jobId}
-                }
+  const {jobId} =useParams();
+  const [jobApplicants,setJobApplicants]=useState([]);
+  useEffect(()=>{
+      try{
+        const getJobApplicant=async()=>{
+        const AllApplicants=await API.graphql(
+          graphqlOperation(
+            listJobApplicants,{
+              filter:{
+                jobID: {contains: jobId}
               }
-            )
+            }
           )
-          setJobApplicants(AllApplicants.data.listJobApplicants.items)
-         
-          }
-        
-          getJobApplicant();
+        )
+        setJobApplicants(AllApplicants.data.listJobApplicants.items)
+       
         }
-        catch(e){
-          console.log(e)
-    
-        }
-    
-      },[]);
-      const getResumeUrl=async(resumeFile)=>{
-        const resumeUrl=await Storage.get(resumeFile);
-        console.log(resumeUrl);
-        window.open(resumeUrl, '_blank', 'noopener,noreferrer')
-        
+      
+        getJobApplicant();
       }
+      catch(e){
+        console.log(e)
+  
+      }
+  
+    },[]);
+    const getResumeUrl=async(resumeFile)=>{
+      const resumeUrl=await Storage.get(resumeFile);
+      console.log(resumeUrl);
+      window.open(resumeUrl, '_blank', 'noopener,noreferrer')
+      
+    }
+    const changeStatus=async(appliactionId,status)=>{
+        if(status==="Applied"){
+            await API.graphql(
+                graphqlOperation(
+                    updateJobApplicant,
+                    {
+                      input:{
+                          id:appliactionId,
+                          applicationStatus:"In-Touch"
+                      }
+                  }
+                )
+            )
+        }
+        if(status==="In-Touch"){
+          await API.graphql(
+              graphqlOperation(
+                  updateJobApplicant,
+                  {
+                    input:{
+                        id:appliactionId,
+                        applicationStatus:"Selected"
+                    }
+                }
+              )
+          )
+      }
+      if(status==="Selected"){
+          await API.graphql(
+              graphqlOperation(
+                  updateJobApplicant,
+                  {
+                    input:{
+                        id:appliactionId,
+                        applicationStatus:"Rejected"
+                    }
+                }
+              )
+          )
+      }
+      if(status==="Rejected"){
+          await API.graphql(
+              graphqlOperation(
+                  updateJobApplicant,
+                  {
+                    input:{
+                        id:appliactionId,
+                        applicationStatus:"Applied"
+                    }
+                }
+              )
+          )
+      }
+      window.location.reload();
 
+    }
     return (
         <div class="admin">
         <header class="admin__header">
@@ -76,7 +132,7 @@ function ViewJobApplicantsScreen(props){
           <h2 style={{color:'rebeccapurple'}}>All Applicants </h2>
           <p style={{color:'rebeccapurple'}}>For job/internship</p>
           <div class="dashboard">
-            <table class="table table-bordered table-hover">
+          <table class="table table-bordered table-hover">
                 <thead>
                      <tr>
                         <th>Name</th>
@@ -84,6 +140,7 @@ function ViewJobApplicantsScreen(props){
                         <th>Email</th>
                         <th>Mobile No.</th>
                         <th>Applied Date</th>
+                        <th>Status</th>
                         <th>View Resume</th>
                     </tr>   
                 </thead>
@@ -96,6 +153,8 @@ function ViewJobApplicantsScreen(props){
                                     <td>{jobApplicants.user.email}</td>
                                     <td>{jobApplicants.user.mobileNo}</td>
                                     <td>{moment(jobApplicants.createdAt).format('ll')}</td>
+                                    <td><Link onClick={() =>{changeStatus(jobApplicants.id,jobApplicants.applicationStatus)}} style={{color:'black'}}>{jobApplicants.applicationStatus}</Link>
+                                    </td>
                                     <td><Link onClick={() =>{getResumeUrl(jobApplicants.user.resumeFile)}} style={{color:'black'}}>View</Link>
                                     </td>
                                 </tr>

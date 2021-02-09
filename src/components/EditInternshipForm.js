@@ -1,39 +1,91 @@
 import { API, Auth, graphqlOperation } from 'aws-amplify';
 import React,{useEffect, useState} from 'react';
-import { createJob,createJobCretaria,createJobDescription,createJobSkill,updateJobCount,createPerk } from '../graphql/mutations';
-import { getJobCount } from '../graphql/queries';
-import {withRouter} from 'react-router-dom';
+import { updateJob,updateJobCretaria, updateJobDescription, updateJobSkill, updatePerk } from '../graphql/mutations';
+import { getJob } from '../graphql/queries';
+import { useParams, withRouter } from 'react-router-dom';
 
-function CreateInternshipForm(props){
+function EditInternshipForm(props){
 
+  const {jobId} =useParams();
   const [userId,setUserId]=useState('');
-  const [discriptionFields, setDiscriptionFields] = useState([{ value: null }]);
-  const [skillsFields, setSkillsFields] = useState([{ value: null }]);
-  const [criteriaFields, setCriteriaFields] = useState([{ value: null }]);
-  const [perksFields, setPerksFields] = useState([{ value: null }]);
+  const [discriptionFields, setDiscriptionFields] = useState([{ value: '',id:'' }]);
+  const [skillsFields, setSkillsFields] = useState([{ value: '',id:'' }]);
+  const [criteriaFields, setCriteriaFields] = useState([{ value: '',id:'' }]);
+  const [perksFields, setPerksFields] = useState([{ value: '',id:'' }]);
   const [jobDetails,updateJobDetils]=useState({
     jobTitle:'',jobName:'',companyName:'',companyWebsite:'',aboutCompany:'',
     duration:'',salary:'',jobLocation:'',lastDate:'',positions:0
   });
-  const[jobCount,setJobCount]=useState(1);
   useEffect(()=>{
     const fetchJobCount= async()=>{
       const userInfo=await Auth.currentAuthenticatedUser({bypassCache:true});
       setUserId(userInfo.attributes.sub);
-      const jobCountData = await API.graphql(
+      const oldJobData= await API.graphql(
         graphqlOperation(
-          getJobCount,{
-            id:'internshipCount'
+          getJob,{
+            id:jobId
           }
         )
       );
-     setJobCount(jobCountData.data.getJobCount.count+1);
-    }
+      updateJobDetils({
+        jobTitle:oldJobData.data.getJob.jobTitle,
+        jobName:oldJobData.data.getJob.jobName,
+        companyName:oldJobData.data.getJob.companyName,
+        companyWebsite:oldJobData.data.getJob.companyWebsite,
+        aboutCompany:oldJobData.data.getJob.aboutCompany,
+        positions:oldJobData.data.getJob.noOfPosition,
+        duration:oldJobData.data.getJob.duration,
+        salary:oldJobData.data.getJob.salary,
+        jobLocation:oldJobData.data.getJob.jobLocation,
+        lastDate:oldJobData.data.getJob.lastDate,
+
+      });
+      let discriptionFieldsCount = oldJobData.data.getJob.jobDescription.items.length;
+      let newDis=0;
+      let values = [];
+      while(newDis<discriptionFieldsCount){ 
+        values.push({ 
+          value: oldJobData.data.getJob.jobDescription.items[newDis].content,
+          id: oldJobData.data.getJob.jobDescription.items[newDis].id });
+        newDis=newDis+1;
+      }
+      setDiscriptionFields(values);
+      let criteriaFieldsCount = oldJobData.data.getJob.jobCretaria.items.length;
+      let newCri=0;
+      values = [];
+      while(newCri<criteriaFieldsCount){    
+        values.push({ 
+          value: oldJobData.data.getJob.jobCretaria.items[newCri].content,
+          id: oldJobData.data.getJob.jobCretaria.items[newCri].id});
+        newCri=newCri+1;
+      }
+      setCriteriaFields(values);
+      let skillsFieldsCount = oldJobData.data.getJob.jobSkills.items.length;
+      let newSki=0;
+      values=[];
+      while(newSki<skillsFieldsCount){ 
+        values.push({ 
+          value: oldJobData.data.getJob.jobSkills.items[newSki].content,
+          id: oldJobData.data.getJob.jobSkills.items[newSki].id });
+        newSki=newSki+1;
+      }
+      setSkillsFields(values)
+      let perksFieldsCount = oldJobData.data.getJob.perks.items.length;
+      let newPerk=0;
+      values=[];
+      while(newPerk<perksFieldsCount){ 
+        values.push({ 
+          value: oldJobData.data.getJob.perks.items[newPerk].content,
+          id: oldJobData.data.getJob.perks.items[newPerk].id });
+        newPerk=newPerk+1;
+      }
+      setPerksFields(values);
+     }
+     
 
      fetchJobCount();
 
   },[]);
-
 
   function handleDiscriptionChange(i, event) {
     const values = [...discriptionFields];
@@ -41,68 +93,26 @@ function CreateInternshipForm(props){
     setDiscriptionFields(values);
   }
 
-  function handleDiscriptionAdd() {
-    const values = [...discriptionFields];
-    values.push({ value: null });
-    setDiscriptionFields(values);
-  }
 
-  function handleDiscriptionRemove(i) {
-    const values = [...discriptionFields];
-    values.splice(i, 1);
-    setDiscriptionFields(values);
-  }
   function handleSkillsChange(i, event) {
     const values = [...skillsFields];
     values[i].value = event.target.value;
     setSkillsFields(values);
   }
 
-  function handleSkillsAdd() {
-    const values = [...skillsFields];
-    values.push({ value: null });
-    setSkillsFields(values);
-  }
 
-  function handleSkillsRemove(i) {
-    const values = [...skillsFields];
-    values.splice(i, 1);
-    setSkillsFields(values);
-  }
   function handleCriteriaChange(i, event) {
     const values = [...criteriaFields];
     values[i].value = event.target.value;
     setCriteriaFields(values);
   }
 
-  function handleCriteriaAdd() {
-    const values = [...criteriaFields];
-    values.push({ value: null });
-    setCriteriaFields(values);
-  }
-
-  function handleCriteriaRemove(i) {
-    const values = [...criteriaFields];
-    values.splice(i, 1);
-    setCriteriaFields(values);
-  }
   function handlePerksChange(i, event) {
     const values = [...perksFields];
     values[i].value = event.target.value;
     setPerksFields(values);
   }
 
-  function handlePerksAdd() {
-    const values = [...perksFields];
-    values.push({ value: null });
-    setPerksFields(values);
-  }
-
-  function handlePerksRemove(i) {
-    const values = [...perksFields];
-    values.splice(i, 1);
-    setPerksFields(values);
-  }
   function handleChange(evt) {
     const value = evt.target.value;
     updateJobDetils({
@@ -110,114 +120,99 @@ function CreateInternshipForm(props){
       [evt.target.name]: value
     });
   }
-  const createNewJob=async()=>{
-    
-    await API.graphql(
-      graphqlOperation(
-        updateJobCount,{
-          input:{
-            id:'internshipCount',
-            count:jobCount
-          }
-
-        }
-      )
-    );
-    await API.graphql(
-      graphqlOperation(
-        createJob,{
-          input:{
-           id:`internship${jobCount}`,
-           jobName:jobDetails.jobName,
-           jobTitle:jobDetails.jobTitle,
-           jobType:"internship",
-           jobStatus:"created",
-           jobUserId:userId,
-           companyName:jobDetails.companyName,
-           companyWebsite:jobDetails.companyWebsite,
-           aboutCompany:jobDetails.aboutCompany,
-           duration:jobDetails.duration,
-           noOfPosition:jobDetails.positions,
-           salary:jobDetails.salary,
-           jobLocation:jobDetails.jobLocation,
-           lastDate:jobDetails.lastDate
-          }
-        }
-      )
-    );
-    let lDis =discriptionFields.length;
-    let iDis=0;
-    while(iDis<lDis){
-    await API.graphql(
-      graphqlOperation(
-        createJobDescription,{
-          input:{
-            content:discriptionFields[iDis].value,
-            jobID:`internship${jobCount}`
-          }
-        }
-      )
-    );
-    iDis=iDis+1;
-       }
-       let lSkil=skillsFields.length;
-       let iSkill=0
-       while(iSkill<lSkil){
-    await API.graphql(
-     graphqlOperation(
-       createJobSkill,{
-         input:{
-           content:skillsFields[iSkill].value,
-           jobID:`internship${jobCount}`
+   const createNewJob=async()=>{
+     await API.graphql(
+       graphqlOperation(
+         updateJob,{
+           input:{
+            id:jobId,
+            jobName:jobDetails.jobName,
+            jobTitle:jobDetails.jobTitle,
+            jobType:"internship",
+            jobStatus:"created",
+            jobUserId:userId,
+            companyName:jobDetails.companyName,
+            companyWebsite:jobDetails.companyWebsite,
+            aboutCompany:jobDetails.aboutCompany,
+            duration:jobDetails.duration,
+            noOfPosition:jobDetails.positions,
+            salary:jobDetails.salary,
+            jobLocation:jobDetails.jobLocation,
+            lastDate:jobDetails.lastDate
+           }
          }
-       }
-     )
-   );
-   iSkill=iSkill+1;
-     }
-     let lCri=criteriaFields.length;
-     let iCri=0;
-     while(iCri<lCri){
-   await API.graphql(
-     graphqlOperation(
-       createJobCretaria,{
-         input:{
-           content:criteriaFields[iCri].value,
-           jobID:`internship${jobCount}`
+       )
+     );
+     let lDis =discriptionFields.length;
+     let iDis=0;
+     while(iDis<lDis){
+     await API.graphql(
+       graphqlOperation(
+         updateJobDescription,{
+           input:{
+             id:discriptionFields[iDis].id,
+             content:discriptionFields[iDis].value
+           }
          }
-       }
-     )
-   );
-   iCri=iCri+1
-     }
-     let lPerks=perksFields.length;
+       )
+     );
+     iDis=iDis+1;
+        }
+        let lSkil=skillsFields.length;
+        let iSkill=0
+        while(iSkill<lSkil){
+     await API.graphql(
+      graphqlOperation(
+        updateJobSkill,{
+          input:{
+            content:skillsFields[iSkill].value,
+            id:skillsFields[iSkill].id
+          }
+        }
+      )
+    );
+    iSkill=iSkill+1;
+      }
+      let lCri=criteriaFields.length;
+      let iCri=0;
+      while(iCri<lCri){
+    await API.graphql(
+      graphqlOperation(
+        updateJobCretaria,{
+          input:{
+            content:criteriaFields[iCri].value,
+            id:criteriaFields[iCri].id
+          }
+        }
+      )
+    );
+    iCri=iCri+1
+      }
+      let lPerks=perksFields.length;
      let iPerks=0;
      while(iPerks<lPerks){
    await API.graphql(
      graphqlOperation(
-       createPerk,{
+       updatePerk,{
          input:{
            content:perksFields[iPerks].value,
-           jobID:`internship${jobCount}`
+           id:perksFields[iPerks].id
          }
        }
      )
    );
    iPerks=iPerks+1
      }
-     
-     alert("Sucessfully created a job. Your Job will be active within 2 hrs, If not contact us.");
-     props.history.push('/internship');
+      alert("Sucessfully updated a job. Your Job will be active within 2 hrs, If not contact us.");
+      props.history.push('/viewAllJobs');
 
+        }
 
-       }
-
-   
     return (
 
 
     <div className="formContainer">
-    <form>
+    <form >
     <div className="form-row">
     <div className="form-group col-md-6">
       <label for="job-title">Job Title</label>
@@ -267,11 +262,7 @@ function CreateInternshipForm(props){
     <input type="number" className="form-control" value={jobDetails.positions} onChange={handleChange} id="positions" name="positions" min={1} max={1000000}/>
   </div>
   <div className="form-group">
-    <label for="internship-description">Internship Description (add multiple lines) </label>
-    <button className="btn" style={{marginLeft:30}} type="button" onClick={() => handleDiscriptionAdd()}>
-       Add more field
-      </button>
-
+    <label htmlFor="job-description">Job Description </label>
       {discriptionFields.map((field, idx) => {
         return (
           <div key={`${field}-${idx}`}>
@@ -280,23 +271,16 @@ function CreateInternshipForm(props){
               className="form-control"
               type="text"
               value={field.value}
-              name="internshipDescription"
-              placeholder="Describe Internship Role"
+              name="jobDescription"
+              placeholder="Describe Job"
               onChange={e => handleDiscriptionChange(idx, e)}
             />
-            <button className="btn" type="button" onClick={() => handleDiscriptionRemove(idx)}>
-             Remove
-            </button>
           </div>
         );
       })}
   </div>
   <div className="form-group">
-    <label for="desired-skills">Desired Skills (add multiple lines) </label>
-    <button className="btn" style={{marginLeft:30}} type="button" onClick={() => handleSkillsAdd()}>
-       Add more field
-      </button>
-
+    <label htmlFor="desired-skills">Desired Skills  </label>
       {skillsFields.map((field, idx) => {
         return (
           <div key={`${field}-${idx}`}>
@@ -309,18 +293,12 @@ function CreateInternshipForm(props){
               placeholder="Add desired skills required for Job"
               onChange={e => handleSkillsChange(idx, e)}
             />
-            <button className="btn" type="button" onClick={() => handleSkillsRemove(idx)}>
-             Remove
-            </button>
           </div>
         );
       })}
   </div>
   <div className="form-group">
-    <label for="criteria">Add Criteria (add multiple lines) </label>
-    <button className="btn" style={{marginLeft:30}} type="button" onClick={() => handleCriteriaAdd()}>
-       Add more field
-      </button>
+    <label htmlFor="criteria">Add Criteria </label>
 
       {criteriaFields.map((field, idx) => {
         return (
@@ -331,21 +309,15 @@ function CreateInternshipForm(props){
               type="text"
               value={field.value}
               name="criteria"
-              placeholder="Enter criteria required for Internship"
+              placeholder="Enter criteria required for job"
               onChange={e => handleCriteriaChange(idx, e)}
             />
-            <button className="btn" type="button" onClick={() => handleCriteriaRemove(idx)}>
-             Remove
-            </button>
           </div>
         );
       })}
   </div>
   <div className="form-group">
     <label for="desired-skills">Perks (add multiple lines) </label>
-    <button className="btn" style={{marginLeft:30}} type="button" onClick={() => handlePerksAdd()}>
-       Add more field
-      </button>
 
       {perksFields.map((field, idx) => {
         return (
@@ -359,15 +331,12 @@ function CreateInternshipForm(props){
               placeholder="Add perks of doing Internship"
               onChange={e => handlePerksChange(idx, e)}
             />
-            <button className="btn" type="button" onClick={() => handlePerksRemove(idx)}>
-             Remove
-            </button>
           </div>
         );
       })}
   </div>
   <div className="text-center submitButton">
-            <button onClick={createNewJob} style={{height:50,width:120,fontFamily:'sans-serif'}} name="addJob" type="button" className="btn btn-primary">Add Job</button>
+            <a onClick={createNewJob} style={{height:50,width:120,fontFamily:'sans-serif'}} name="addJob" type="button" className="btn btn-primary">Update Job</a>
           </div>
 </form>
 
@@ -377,4 +346,4 @@ function CreateInternshipForm(props){
 
     );
 }
-export default withRouter(CreateInternshipForm);
+export default withRouter(EditInternshipForm);

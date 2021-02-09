@@ -172,7 +172,7 @@ export const createJobApplicant = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -248,7 +248,7 @@ export const updateJobApplicant = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -324,7 +324,7 @@ export const deleteJobApplicant = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -368,7 +368,7 @@ export const createJob = /* GraphQL */ `
       jobType
       jobStatus
       companyName
-      comapanyWebsite
+      companyWebsite
       aboutCompany
       experience
       duration
@@ -445,7 +445,7 @@ export const updateJob = /* GraphQL */ `
       jobType
       jobStatus
       companyName
-      comapanyWebsite
+      companyWebsite
       aboutCompany
       experience
       duration
@@ -522,7 +522,7 @@ export const deleteJob = /* GraphQL */ `
       jobType
       jobStatus
       companyName
-      comapanyWebsite
+      companyWebsite
       aboutCompany
       experience
       duration
@@ -604,7 +604,7 @@ export const createPerk = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -652,7 +652,7 @@ export const updatePerk = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -700,7 +700,7 @@ export const deletePerk = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -748,7 +748,7 @@ export const createJobDescription = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -796,7 +796,7 @@ export const updateJobDescription = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -844,7 +844,7 @@ export const deleteJobDescription = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -892,7 +892,7 @@ export const createJobCretaria = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -940,7 +940,7 @@ export const updateJobCretaria = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -988,7 +988,7 @@ export const deleteJobCretaria = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -1036,7 +1036,7 @@ export const createJobSkill = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -1084,7 +1084,7 @@ export const updateJobSkill = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration
@@ -1132,7 +1132,7 @@ export const deleteJobSkill = /* GraphQL */ `
         jobType
         jobStatus
         companyName
-        comapanyWebsite
+        companyWebsite
         aboutCompany
         experience
         duration

@@ -1,7 +1,6 @@
 import { API, Auth, graphqlOperation } from 'aws-amplify';
 import React,{useEffect, useState} from 'react';
 import {createUser} from '../graphql/mutations';
-import { withRouter } from 'react-router-dom';
 
     const CompanyRegister =(props)=>{
     const[formState,updateFormState]=useState({
@@ -107,7 +106,7 @@ import { withRouter } from 'react-router-dom';
       <input type="text" value={formState.address}  onChange={handleChange} className="form-control" name="address"  placeholder="Enter Your Current Address" required/>
     </div>
     <div className="form-group col-md-6">
-    <label for="company-name">Comapny Name</label>
+    <label for="company-name">Company Name</label>
       <input type="text" value={formState.companyName}  onChange={handleChange} className="form-control" name="collegeName"  placeholder="Enter Your Organization Name" required/>
     </div>
   </div>

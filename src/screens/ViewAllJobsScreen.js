@@ -89,13 +89,13 @@ function ViewAllJobsScreen(props){
                 <thead>
                      <tr>
                         <th>Job Name</th>
-                        <th>Job Location</th>
+                        <th>Location</th>
                         <th>Post Date</th>
                         <th>Last Date</th>
                         <th>View Applicants</th>
-                        <th>View Job Details</th>
-                        <th>Edit Job Details</th>
-                        <th>Delete Job</th>
+                        <th>View</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>   
                 </thead>
                 <tbody>
