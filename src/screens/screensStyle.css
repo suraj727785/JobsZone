@@ -1,28 +1,28 @@
-.JobsLarge{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin-bottom:40px;
-  }
-.JobsMedium{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); 
-    margin-bottom:40px;
-    }
-.JobsSmall{
-      display: grid;
-      grid-template-columns: repeat(1, 1fr); 
-      margin-bottom:40px;
-      }
-.LargeSearchContainer{
-        margin-top:100;
-        margin-left:400;
+.JobsLarge {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 40px;
+}
+.JobsMedium {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 40px;
+}
+.JobsSmall {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  margin-bottom: 40px;
+}
+.LargeSearchContainer {
+  margin-top: 100;
+  margin-left: 400;
 }
 
 .header-row {
   padding: 0 18px;
 }
 .header-column {
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   display: inline-block;
   font-weight: 300;
   color: #555;
@@ -32,7 +32,7 @@
   box-sizing: border-box; /*content-box|border-box|initial|inherit;*/
 }
 .list-group-column {
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   display: inline-block;
   font-weight: 300;
   color: #555;

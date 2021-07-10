@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 .admin {
@@ -49,7 +51,7 @@
 @media screen and (min-width: 48rem) {
   .admin {
     --spacing: 2rem;
- }
+  }
 }
 .dashboard {
   --column-count: 2;
@@ -73,12 +75,12 @@
 @media screen and (min-width: 48rem) {
   .dashboard {
     --column-count: 4;
- }
+  }
 }
 @supports (display: grid) {
   .dashboard__item {
     padding: 0;
- }
+  }
 }
 a {
   color: #dc5a60;
@@ -123,7 +125,8 @@ img {
   color: #76808f;
   text-decoration: none;
 }
-.menu__link:hover, .menu__link:focus {
+.menu__link:hover,
+.menu__link:focus {
   color: #fff;
   background-color: #1f222d;
 }
